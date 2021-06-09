@@ -8,7 +8,6 @@ import { ApolloProvider } from "@apollo/client";
 import { useApollo } from "@/graphql/apolloClient";
 
 import NextNprogress from "nextjs-progressbar";
-import AudioPlayer from "react-h5-audio-player";
 
 import "react-h5-audio-player/lib/styles.css";
 
@@ -53,14 +52,6 @@ function MyApp({ Component, pageProps }: AppProps) {
             />
             <ApolloProvider client={client}>
                 <Component {...pageProps} />
-
-                <AudioPlayer
-                    autoPlay={false}
-                    src="/api/song/1"
-                    onPlay={(e) => console.log("onPlay")}
-                    // other props here
-                    style={{ bottom: 0, position: "fixed", right: 0 }}
-                />
             </ApolloProvider>
         </Provider>
     );

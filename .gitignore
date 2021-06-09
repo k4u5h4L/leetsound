@@ -10,6 +10,7 @@ temp/
 dist/
 build/
 models/Chat.js
+prisma/dev.db
 
 # pwa stuff
 public/sw.js

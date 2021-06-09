@@ -21,7 +21,8 @@
         "migrate:prisma": "npx prisma migrate dev --preview-feature",
         "dbpush:prisma": "npx prisma db push",
         "introspect:prisma": "npx prisma introspect",
-        "studio:prisma": "npx prisma studio"
+        "studio:prisma": "npx prisma studio",
+        "format:prisma": "npx prisma format"
     },
     "dependencies": {
         "@apollo/client": "^3.3.15",

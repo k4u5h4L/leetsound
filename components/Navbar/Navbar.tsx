@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 export default function Navbar() {
     return (
@@ -6,28 +7,35 @@ export default function Navbar() {
             <div className="uk-container uk-container-large">
                 <div className="uk-position-z-index" data-uk-navbar>
                     <div className="uk-navbar-left">
-                        <a className="uk-navbar-item uk-logo" href="index.html">
-                            <img src="images/logo%402x.png" alt="logo" />
-                        </a>
+                        <Link href="/">
+                            <a className="uk-navbar-item uk-logo">
+                                <img src="/images/logo%402x.png" alt="logo" />
+                            </a>
+                        </Link>
                         <ul
                             className="
                                 uk-navbar-nav uk-visible@m uk-margin-large-left
                             "
                         >
                             <li>
-                                <a href="index.html">Home</a>
+                                <Link href="/">
+                                    <a>Home</a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="category.html">Music collections</a>
+                                <Link href="/categories">
+                                    <a>Categories</a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="category.html">category</a>
+                                <Link href="/search">
+                                    <a>Search</a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="search.html">search</a>
-                            </li>
-                            <li>
-                                <a href="single.html">The single</a>
+                                <Link href="/song/1">
+                                    <a>Single</a>
+                                </Link>
                             </li>
                         </ul>
                     </div>
@@ -58,10 +66,9 @@ export default function Navbar() {
                         </div>
                         <ul className="uk-navbar-nav uk-visible@m">
                             <li>
-                                <a href="sign-in.html">Sign In</a>
-                            </li>
-                            <li>
-                                <a href="sign-up.html">Sign Up</a>
+                                <Link href="/login">
+                                    <a>Login</a>
+                                </Link>
                             </li>
                         </ul>
                         <a
