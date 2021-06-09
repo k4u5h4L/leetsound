@@ -1,5 +1,7 @@
 export * from "./Query";
 export * from "./Mutation";
-export * from "./Note";
-export * from "./Todo";
-export * from "./Chat";
+
+export * from "./Song";
+export * from "./Album";
+export * from "./Artist";
+export * from "./Genre";

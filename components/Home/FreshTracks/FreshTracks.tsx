@@ -1,6 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
 
 export default function FreshTracks() {
+    const [songs, setSongs] = useState([]);
+
+    useEffect(() => {
+        const doThis = async () => {
+            const res = await fetch(`/api/songs`);
+            const data = await res.json();
+
+            setSongs(data.songs);
+            console.log(data.songs);
+        };
+
+        doThis();
+    }, []);
     return (
         <div className="uk-section uk-section-default">
             <div className="uk-container uk-container-large">
@@ -17,85 +31,86 @@ export default function FreshTracks() {
                             className="uk-child-width-1-2 uk-child-width-1-4@s"
                             data-uk-grid
                         >
-                            <div>
-                                <div className="uk-card">
-                                    <div
-                                        className="
-                                            uk-card-media-top uk-inline uk-light
-                                        "
-                                    >
-                                        <img
-                                            className="uk-border-rounded-medium"
-                                            src="images/1.jpg"
-                                            alt="Birth of a Star"
-                                        />
+                            {songs.map((song, index) => (
+                                <div key={index}>
+                                    <div className="uk-card">
                                         <div
                                             className="
+                                            uk-card-media-top uk-inline uk-light
+                                        "
+                                        >
+                                            <img
+                                                className="uk-border-rounded-medium"
+                                                src={song.cover}
+                                                alt="Birth of a Star"
+                                            />
+                                            <div
+                                                className="
                                                 uk-position-cover
                                                 uk-card-overlay
                                                 uk-border-rounded-medium
                                             "
-                                        ></div>
-                                        <div
-                                            className="
+                                            ></div>
+                                            <div
+                                                className="
                                                 uk-position-xsmall
                                                 uk-position-top-right
                                             "
-                                        >
-                                            Length 2:23
+                                            >
+                                                Length: {song.length}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <h3
-                                            className="
+                                        <div>
+                                            <h3
+                                                className="
                                                 uk-card-title
                                                 uk-text-500
                                                 uk-margin-small-bottom
                                                 uk-margin-top
                                             "
-                                        >
-                                            Natti Natasha: IlumiNATTI
-                                        </h3>
-                                        <div
-                                            className="uk-text-xsmall uk-text-muted"
-                                            data-uk-grid
-                                        >
+                                            >
+                                                {song.name}
+                                            </h3>
                                             <div
-                                                className="
+                                                className="uk-text-xsmall uk-text-muted"
+                                                data-uk-grid
+                                            >
+                                                <div
+                                                    className="
                                                     uk-width-auto
                                                     uk-flex
                                                     uk-flex-middle
                                                 "
-                                            >
-                                                <span
-                                                    className="uk-rating-filled"
-                                                    data-uk-icon="icon:play-circle; ratio: 0.7"
-                                                ></span>
-                                                <span
-                                                    className="
+                                                >
+                                                    <span
+                                                        className="uk-rating-filled"
+                                                        data-uk-icon="icon:play-circle; ratio: 0.7"
+                                                    ></span>
+                                                    <span
+                                                        className="
                                                         uk-margin-xsmall-left
                                                     "
-                                                >
-                                                    BPM 122
-                                                </span>
-                                            </div>
-                                            <div
-                                                className="
+                                                    >
+                                                        {song.genres[0].name}
+                                                    </span>
+                                                </div>
+                                                <div
+                                                    className="
                                                     uk-width-expand
                                                     uk-text-right
                                                 "
-                                            >
-                                                by Kevin Maison
+                                                >
+                                                    by {song.artist.name}
+                                                </div>
                                             </div>
                                         </div>
+                                        <Link href={`/song/${song.id}`}>
+                                            <a className="uk-position-cover"></a>
+                                        </Link>
                                     </div>
-                                    <a
-                                        href="single.html"
-                                        className="uk-position-cover"
-                                    ></a>
                                 </div>
-                            </div>
-                            <div tabIndex={0} className="uk-animation-toggle">
+                            ))}
+                            {/* <div tabIndex={0} className="uk-animation-toggle">
                                 <div className="uk-card">
                                     <div
                                         className="
@@ -952,7 +967,7 @@ export default function FreshTracks() {
                                         className="uk-position-cover"
                                     ></a>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                         <div className="uk-margin-large-top uk-text-small">
                             <ul

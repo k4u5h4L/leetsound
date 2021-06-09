@@ -1,21 +1,21 @@
 import React from "react";
 
 import Navbar from "@/components/Navbar/Navbar";
-import Banner from "@/components/Home/Banner/Banner";
-import FreshTracks from "@/components/Home/FreshTracks/FreshTracks";
-import Ads from "@/components/Home/Ads/Ads";
+import Song from "@/components/Song/Song";
+import SongDesc from "@/components/SongDesc/SongDesc";
+import Related from "@/components/Related/Related";
 import Footer from "@/components/Footer/Footer";
 import BottomLinks from "@/components/BottomLinks/BottomLinks";
 
 import AudioPlayer from "react-h5-audio-player";
 
-export default function Home() {
+export default function SingleSong() {
     return (
         <>
             <Navbar />
-            <Banner />
-            <FreshTracks />
-            <Ads />
+            <Song />
+            <SongDesc />
+            <Related />
             <Footer />
             <BottomLinks />
 

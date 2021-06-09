@@ -1,3 +1,3 @@
 // make types and interfaces for objects and data
 
-export {};
+export * from "./GraphQLContext";

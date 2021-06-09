@@ -2,62 +2,385 @@
 ### Do not make changes to this file directly
 
 
-type Chat {
-  chatId: String
-  members: [ChatPerson]
-  messages: [Messages]
+type Album {
+  Artist: Artist
+  id: String!
+  name: String!
+  songs(after: SongWhereUniqueInput, before: SongWhereUniqueInput, first: Int, last: Int): [Song!]!
 }
 
-type ChatPerson {
-  email: String
-  name: String
+input AlbumCreateInput {
+  Artist: ArtistCreateNestedOneWithoutAlbumsInput
+  id: String
+  name: String!
+  songs: SongCreateNestedManyWithoutAlbumInput
 }
 
-type Messages {
-  content: String
-  date: String
-  from: String
-  sentiment: Int
+input AlbumCreateNestedManyWithoutArtistInput {
+  connect: [AlbumWhereUniqueInput!]
+  connectOrCreate: [AlbumCreateOrConnectWithoutArtistInput!]
+  create: [AlbumCreateWithoutArtistInput!]
+}
+
+input AlbumCreateNestedOneWithoutSongsInput {
+  connect: AlbumWhereUniqueInput
+  connectOrCreate: AlbumCreateOrConnectWithoutSongsInput
+  create: AlbumCreateWithoutSongsInput
+}
+
+input AlbumCreateOrConnectWithoutArtistInput {
+  create: AlbumCreateWithoutArtistInput!
+  where: AlbumWhereUniqueInput!
+}
+
+input AlbumCreateOrConnectWithoutSongsInput {
+  create: AlbumCreateWithoutSongsInput!
+  where: AlbumWhereUniqueInput!
+}
+
+input AlbumCreateWithoutArtistInput {
+  id: String
+  name: String!
+  songs: SongCreateNestedManyWithoutAlbumInput
+}
+
+input AlbumCreateWithoutSongsInput {
+  Artist: ArtistCreateNestedOneWithoutAlbumsInput
+  id: String
+  name: String!
+}
+
+input AlbumListRelationFilter {
+  every: AlbumWhereInput
+  none: AlbumWhereInput
+  some: AlbumWhereInput
+}
+
+input AlbumWhereInput {
+  AND: [AlbumWhereInput!]
+  Artist: ArtistWhereInput
+  NOT: [AlbumWhereInput!]
+  OR: [AlbumWhereInput!]
+  artistId: StringNullableFilter
+  id: StringFilter
+  name: StringFilter
+  songs: SongListRelationFilter
+}
+
+input AlbumWhereUniqueInput {
+  id: String
+}
+
+type Artist {
+  albums(after: AlbumWhereUniqueInput, before: AlbumWhereUniqueInput, first: Int, last: Int): [Album!]!
+  id: String!
+  name: String!
+  songs(after: SongWhereUniqueInput, before: SongWhereUniqueInput, first: Int, last: Int): [Song!]!
+}
+
+input ArtistCreateInput {
+  albums: AlbumCreateNestedManyWithoutArtistInput
+  id: String
+  name: String!
+  songs: SongCreateNestedManyWithoutArtistInput
+}
+
+input ArtistCreateNestedOneWithoutAlbumsInput {
+  connect: ArtistWhereUniqueInput
+  connectOrCreate: ArtistCreateOrConnectWithoutAlbumsInput
+  create: ArtistCreateWithoutAlbumsInput
+}
+
+input ArtistCreateNestedOneWithoutSongsInput {
+  connect: ArtistWhereUniqueInput
+  connectOrCreate: ArtistCreateOrConnectWithoutSongsInput
+  create: ArtistCreateWithoutSongsInput
+}
+
+input ArtistCreateOrConnectWithoutAlbumsInput {
+  create: ArtistCreateWithoutAlbumsInput!
+  where: ArtistWhereUniqueInput!
+}
+
+input ArtistCreateOrConnectWithoutSongsInput {
+  create: ArtistCreateWithoutSongsInput!
+  where: ArtistWhereUniqueInput!
+}
+
+input ArtistCreateWithoutAlbumsInput {
+  id: String
+  name: String!
+  songs: SongCreateNestedManyWithoutArtistInput
+}
+
+input ArtistCreateWithoutSongsInput {
+  albums: AlbumCreateNestedManyWithoutArtistInput
+  id: String
+  name: String!
+}
+
+input ArtistWhereInput {
+  AND: [ArtistWhereInput!]
+  NOT: [ArtistWhereInput!]
+  OR: [ArtistWhereInput!]
+  albums: AlbumListRelationFilter
+  id: StringFilter
+  name: StringFilter
+  songs: SongListRelationFilter
+}
+
+input ArtistWhereUniqueInput {
+  id: String
+}
+
+type Genre {
+  id: String!
+  name: String!
+  songs(after: SongWhereUniqueInput, before: SongWhereUniqueInput, first: Int, last: Int): [Song!]!
+}
+
+input GenreCreateInput {
+  id: String
+  name: String!
+  songs: SongCreateNestedManyWithoutGenresInput
+}
+
+input GenreCreateNestedManyWithoutSongsInput {
+  connect: [GenreWhereUniqueInput!]
+  connectOrCreate: [GenreCreateOrConnectWithoutSongsInput!]
+  create: [GenreCreateWithoutSongsInput!]
+}
+
+input GenreCreateOrConnectWithoutSongsInput {
+  create: GenreCreateWithoutSongsInput!
+  where: GenreWhereUniqueInput!
+}
+
+input GenreCreateWithoutSongsInput {
+  id: String
+  name: String!
+}
+
+input GenreListRelationFilter {
+  every: GenreWhereInput
+  none: GenreWhereInput
+  some: GenreWhereInput
+}
+
+input GenreWhereInput {
+  AND: [GenreWhereInput!]
+  NOT: [GenreWhereInput!]
+  OR: [GenreWhereInput!]
+  id: StringFilter
+  name: StringFilter
+  songs: SongListRelationFilter
+}
+
+input GenreWhereUniqueInput {
+  id: String
+}
+
+input IntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntFilter
+  notIn: [Int!]
 }
 
 type Mutation {
-  completeTodo(desc: String!, email: String!): Todo
-  createChat(email: String!, name: String!): Chat
-  createNote(desc: String!, email: String!): Note
-  createTodo(desc: String!, email: String!): Todo
-  deleteNote(desc: String!, email: String!): Note
-  deleteTodo(desc: String!, email: String!): Todo
+  createOneAlbum(data: AlbumCreateInput!): Album!
+  createOneArtist(data: ArtistCreateInput!): Artist!
+  createOneGenre(data: GenreCreateInput!): Genre!
+  createOneSong(data: SongCreateInput!): Song!
+  deleteOneAlbum(where: AlbumWhereUniqueInput!): Album
+  deleteOneArtist(where: ArtistWhereUniqueInput!): Artist
+  deleteOneGenre(where: GenreWhereUniqueInput!): Genre
+  deleteOneSong(where: SongWhereUniqueInput!): Song
 }
 
-type Note {
-  email: String
-  list: [NoteDescription]
+input NestedIntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntFilter
+  notIn: [Int!]
 }
 
-type NoteDescription {
-  desc: String
+input NestedStringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+input NestedStringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringNullableFilter
+  notIn: [String!]
+  startsWith: String
 }
 
 type Query {
-  """Get the chats of corresponding user using the chat ID"""
-  ChatByChatId(chatId: ID): Chat
-
-  """Get the chats of corresponding user using their email"""
-  ChatsByEmail(email: ID): [Chat]
-
-  """Get the notes by its corresponding email of the user"""
-  NoteByEmail(email: ID): Note
-
-  """Get the Todo tasks by its corresponding email of the user"""
-  TodoByEmail(email: ID): Todo
+  album(where: AlbumWhereUniqueInput!): Album
+  albums(after: AlbumWhereUniqueInput, before: AlbumWhereUniqueInput, first: Int, last: Int, where: AlbumWhereInput): [Album!]!
+  artist(where: ArtistWhereUniqueInput!): Artist
+  artists(after: ArtistWhereUniqueInput, before: ArtistWhereUniqueInput, first: Int, last: Int, where: ArtistWhereInput): [Artist!]!
+  genre(where: GenreWhereUniqueInput!): Genre
+  genres(after: GenreWhereUniqueInput, before: GenreWhereUniqueInput, first: Int, last: Int, where: GenreWhereInput): [Genre!]!
+  song(where: SongWhereUniqueInput!): Song
+  songs(after: SongWhereUniqueInput, before: SongWhereUniqueInput, first: Int, last: Int, where: SongWhereInput): [Song!]!
 }
 
-type Todo {
-  email: String
-  list: [TodoDescription]
+type Song {
+  album: Album!
+  artist: Artist!
+  cover: String!
+  genres(after: GenreWhereUniqueInput, before: GenreWhereUniqueInput, first: Int, last: Int): [Genre!]!
+  id: String!
+  length: Int!
+  name: String!
 }
 
-type TodoDescription {
-  desc: String
-  status: Boolean
+input SongCreateInput {
+  album: AlbumCreateNestedOneWithoutSongsInput!
+  artist: ArtistCreateNestedOneWithoutSongsInput!
+  cover: String!
+  genres: GenreCreateNestedManyWithoutSongsInput
+  id: String
+  length: Int!
+  name: String!
+}
+
+input SongCreateNestedManyWithoutAlbumInput {
+  connect: [SongWhereUniqueInput!]
+  connectOrCreate: [SongCreateOrConnectWithoutAlbumInput!]
+  create: [SongCreateWithoutAlbumInput!]
+}
+
+input SongCreateNestedManyWithoutArtistInput {
+  connect: [SongWhereUniqueInput!]
+  connectOrCreate: [SongCreateOrConnectWithoutArtistInput!]
+  create: [SongCreateWithoutArtistInput!]
+}
+
+input SongCreateNestedManyWithoutGenresInput {
+  connect: [SongWhereUniqueInput!]
+  connectOrCreate: [SongCreateOrConnectWithoutGenresInput!]
+  create: [SongCreateWithoutGenresInput!]
+}
+
+input SongCreateOrConnectWithoutAlbumInput {
+  create: SongCreateWithoutAlbumInput!
+  where: SongWhereUniqueInput!
+}
+
+input SongCreateOrConnectWithoutArtistInput {
+  create: SongCreateWithoutArtistInput!
+  where: SongWhereUniqueInput!
+}
+
+input SongCreateOrConnectWithoutGenresInput {
+  create: SongCreateWithoutGenresInput!
+  where: SongWhereUniqueInput!
+}
+
+input SongCreateWithoutAlbumInput {
+  artist: ArtistCreateNestedOneWithoutSongsInput!
+  cover: String!
+  genres: GenreCreateNestedManyWithoutSongsInput
+  id: String
+  length: Int!
+  name: String!
+}
+
+input SongCreateWithoutArtistInput {
+  album: AlbumCreateNestedOneWithoutSongsInput!
+  cover: String!
+  genres: GenreCreateNestedManyWithoutSongsInput
+  id: String
+  length: Int!
+  name: String!
+}
+
+input SongCreateWithoutGenresInput {
+  album: AlbumCreateNestedOneWithoutSongsInput!
+  artist: ArtistCreateNestedOneWithoutSongsInput!
+  cover: String!
+  id: String
+  length: Int!
+  name: String!
+}
+
+input SongListRelationFilter {
+  every: SongWhereInput
+  none: SongWhereInput
+  some: SongWhereInput
+}
+
+input SongWhereInput {
+  AND: [SongWhereInput!]
+  NOT: [SongWhereInput!]
+  OR: [SongWhereInput!]
+  album: AlbumWhereInput
+  albumId: StringFilter
+  artist: ArtistWhereInput
+  artistId: StringFilter
+  cover: StringFilter
+  genres: GenreListRelationFilter
+  id: StringFilter
+  length: IntFilter
+  name: StringFilter
+}
+
+input SongWhereUniqueInput {
+  id: String
+}
+
+input StringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+input StringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringNullableFilter
+  notIn: [String!]
+  startsWith: String
 }

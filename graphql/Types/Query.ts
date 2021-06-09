@@ -1,130 +1,48 @@
 import { queryType, idArg } from "nexus";
 import { AuthenticationError } from "apollo-server-micro";
 
-import {
-    Note as ChatNote,
-    Todo as ChatTodo,
-    Chat as ChatConvos,
-} from "./index";
-import dbConnect from "@/utils/dbConnect";
-import Note from "@/models/Note";
-import Todo from "@/models/Todo";
-import Chat from "@/models/Chat";
-import { ChatType } from "@/types/ChatType";
+import { GraphQLContext } from "@/types/index";
 
 export const Query = queryType({
-    definition(t) {
-        t.field("NoteByEmail", {
-            type: ChatNote,
-            description: "Get the notes by its corresponding email of the user",
-            args: { email: idArg() },
-            resolve: async (_root, { email }: { email: string }, ctx) => {
-                await dbConnect();
-
-                if (ctx.session) {
-                    if (ctx.session.user.email == email) {
-                        const note = await Note.findOne({
-                            email: email,
-                        });
-
-                        if (!note) {
-                            console.log("does not exist");
-                        }
-
-                        return note;
-                    } else {
-                        throw new AuthenticationError(
-                            `I guess you are not ${email}. If you are, login first before acessing the data.`
-                        );
-                    }
-                } else {
-                    throw new AuthenticationError("User is not logged in.");
-                }
+    definition(t: any) {
+        t.crud.song({
+            resolve: (_root, args, ctx: GraphQLContext) => {
+                return ctx.prisma.song.findFirst({
+                    where: { id: args.where.id },
+                });
             },
         });
 
-        t.field("TodoByEmail", {
-            type: ChatTodo,
-            description:
-                "Get the Todo tasks by its corresponding email of the user",
-            args: { email: idArg() },
-            resolve: async (_root, { email }: { email: string }, ctx) => {
-                await dbConnect();
+        t.crud.songs({ pagination: true, filtering: true });
 
-                if (ctx.session) {
-                    if (ctx.session.user.email == email) {
-                        const todo = await Todo.findOne({
-                            email: email,
-                        });
-
-                        if (!todo) {
-                            console.log("does not exist");
-                        }
-
-                        return todo;
-                    } else {
-                        throw new AuthenticationError(
-                            `I guess you are not ${email}. If you are, login first before acessing the data.`
-                        );
-                    }
-                } else {
-                    throw new AuthenticationError("User is not logged in.");
-                }
+        t.crud.album({
+            resolve: (_root, args, ctx: GraphQLContext) => {
+                return ctx.prisma.album.findFirst({
+                    where: { id: args.where.id },
+                });
             },
         });
 
-        t.list.field("ChatsByEmail", {
-            type: ChatConvos,
-            description:
-                "Get the chats of corresponding user using their email",
-            args: { email: idArg() },
-            resolve: async (_root, { email }: { email: string }, ctx) => {
-                await dbConnect();
+        t.crud.albums({ pagination: true, filtering: true });
 
-                if (ctx.session) {
-                    if (ctx.session.user.email == email) {
-                        const chats = await Chat.find({
-                            "members.email": email,
-                        });
-
-                        if (!chats) {
-                            console.log("does not exist");
-                        }
-
-                        return chats;
-                    } else {
-                        throw new AuthenticationError(
-                            `I guess you are not ${email}. If you are, login first before acessing the data.`
-                        );
-                    }
-                } else {
-                    throw new AuthenticationError("User is not logged in.");
-                }
+        t.crud.genre({
+            resolve: (_root, args, ctx: GraphQLContext) => {
+                return ctx.prisma.genre.findFirst({
+                    where: { id: args.where.id },
+                });
             },
         });
 
-        t.field("ChatByChatId", {
-            type: ChatConvos,
-            description:
-                "Get the chats of corresponding user using the chat ID",
-            args: { chatId: idArg() },
-            resolve: async (_root, { chatId }: { chatId: string }, ctx) => {
-                await dbConnect();
+        t.crud.genres({ pagination: true, filtering: true });
 
-                if (ctx.session) {
-                    const chat = await Chat.findOne({
-                        chatId: chatId,
-                    });
-
-                    if (!chat) {
-                        console.log("does not exist");
-                    }
-
-                    return chat;
-                } else {
-                    throw new AuthenticationError("User is not logged in.");
-                }
+        t.crud.artist({
+            resolve: (_root, args, ctx: GraphQLContext) => {
+                return ctx.prisma.artist.findFirst({
+                    where: { id: args.where.id },
+                });
             },
         });
+
+        t.crud.artists({ pagination: true, filtering: true });
     },
 });

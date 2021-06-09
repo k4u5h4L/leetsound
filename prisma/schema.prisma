@@ -10,6 +10,46 @@ generator client {
   provider = "prisma-client-js"
 }
 
+model Song {
+  id       String  @id @default(cuid())
+  cover    String
+  length   Int
+  artist   Artist  @relation(fields: [artistId], references: [id])
+  name     String
+  album    Album   @relation(fields: [albumId], references: [id])
+  genres   Genre[]
+  albumId  String
+  artistId String
+}
+
+model Album {
+  id       String  @id @default(cuid())
+  name     String
+  songs    Song[]
+  Artist   Artist? @relation(fields: [artistId], references: [id])
+  artistId String?
+}
+
+model Artist {
+  id     String  @id @default(cuid())
+  name   String
+  songs  Song[]
+  albums Album[]
+}
+
+model Genre {
+  id    String @id @default(cuid())
+  name  String
+  songs Song[]
+}
+
+// model Playlist {
+//   id     String @id @default(cuid())
+//   songs  Song[]
+//   user   User   @relation(fields: [userId], references: [id])
+//   userId Int
+// }
+
 model Account {
   id                 Int       @id @default(autoincrement())
   compoundId         String    @unique @map(name: "compound_id")

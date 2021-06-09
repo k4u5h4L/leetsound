@@ -7,13 +7,304 @@
 
 
 
-
+declare global {
+  interface NexusGenCustomOutputProperties<TypeName extends string> {
+    crud: NexusPrisma<TypeName, 'crud'>
+    model: NexusPrisma<TypeName, 'model'>
+  }
+}
 
 declare global {
   interface NexusGen extends NexusGenTypes {}
 }
 
 export interface NexusGenInputs {
+  AlbumCreateInput: { // input type
+    Artist?: NexusGenInputs['ArtistCreateNestedOneWithoutAlbumsInput'] | null; // ArtistCreateNestedOneWithoutAlbumsInput
+    id?: string | null; // String
+    name: string; // String!
+    songs?: NexusGenInputs['SongCreateNestedManyWithoutAlbumInput'] | null; // SongCreateNestedManyWithoutAlbumInput
+  }
+  AlbumCreateNestedManyWithoutArtistInput: { // input type
+    connect?: NexusGenInputs['AlbumWhereUniqueInput'][] | null; // [AlbumWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['AlbumCreateOrConnectWithoutArtistInput'][] | null; // [AlbumCreateOrConnectWithoutArtistInput!]
+    create?: NexusGenInputs['AlbumCreateWithoutArtistInput'][] | null; // [AlbumCreateWithoutArtistInput!]
+  }
+  AlbumCreateNestedOneWithoutSongsInput: { // input type
+    connect?: NexusGenInputs['AlbumWhereUniqueInput'] | null; // AlbumWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['AlbumCreateOrConnectWithoutSongsInput'] | null; // AlbumCreateOrConnectWithoutSongsInput
+    create?: NexusGenInputs['AlbumCreateWithoutSongsInput'] | null; // AlbumCreateWithoutSongsInput
+  }
+  AlbumCreateOrConnectWithoutArtistInput: { // input type
+    create: NexusGenInputs['AlbumCreateWithoutArtistInput']; // AlbumCreateWithoutArtistInput!
+    where: NexusGenInputs['AlbumWhereUniqueInput']; // AlbumWhereUniqueInput!
+  }
+  AlbumCreateOrConnectWithoutSongsInput: { // input type
+    create: NexusGenInputs['AlbumCreateWithoutSongsInput']; // AlbumCreateWithoutSongsInput!
+    where: NexusGenInputs['AlbumWhereUniqueInput']; // AlbumWhereUniqueInput!
+  }
+  AlbumCreateWithoutArtistInput: { // input type
+    id?: string | null; // String
+    name: string; // String!
+    songs?: NexusGenInputs['SongCreateNestedManyWithoutAlbumInput'] | null; // SongCreateNestedManyWithoutAlbumInput
+  }
+  AlbumCreateWithoutSongsInput: { // input type
+    Artist?: NexusGenInputs['ArtistCreateNestedOneWithoutAlbumsInput'] | null; // ArtistCreateNestedOneWithoutAlbumsInput
+    id?: string | null; // String
+    name: string; // String!
+  }
+  AlbumListRelationFilter: { // input type
+    every?: NexusGenInputs['AlbumWhereInput'] | null; // AlbumWhereInput
+    none?: NexusGenInputs['AlbumWhereInput'] | null; // AlbumWhereInput
+    some?: NexusGenInputs['AlbumWhereInput'] | null; // AlbumWhereInput
+  }
+  AlbumWhereInput: { // input type
+    AND?: NexusGenInputs['AlbumWhereInput'][] | null; // [AlbumWhereInput!]
+    Artist?: NexusGenInputs['ArtistWhereInput'] | null; // ArtistWhereInput
+    NOT?: NexusGenInputs['AlbumWhereInput'][] | null; // [AlbumWhereInput!]
+    OR?: NexusGenInputs['AlbumWhereInput'][] | null; // [AlbumWhereInput!]
+    artistId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    songs?: NexusGenInputs['SongListRelationFilter'] | null; // SongListRelationFilter
+  }
+  AlbumWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
+  ArtistCreateInput: { // input type
+    albums?: NexusGenInputs['AlbumCreateNestedManyWithoutArtistInput'] | null; // AlbumCreateNestedManyWithoutArtistInput
+    id?: string | null; // String
+    name: string; // String!
+    songs?: NexusGenInputs['SongCreateNestedManyWithoutArtistInput'] | null; // SongCreateNestedManyWithoutArtistInput
+  }
+  ArtistCreateNestedOneWithoutAlbumsInput: { // input type
+    connect?: NexusGenInputs['ArtistWhereUniqueInput'] | null; // ArtistWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['ArtistCreateOrConnectWithoutAlbumsInput'] | null; // ArtistCreateOrConnectWithoutAlbumsInput
+    create?: NexusGenInputs['ArtistCreateWithoutAlbumsInput'] | null; // ArtistCreateWithoutAlbumsInput
+  }
+  ArtistCreateNestedOneWithoutSongsInput: { // input type
+    connect?: NexusGenInputs['ArtistWhereUniqueInput'] | null; // ArtistWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['ArtistCreateOrConnectWithoutSongsInput'] | null; // ArtistCreateOrConnectWithoutSongsInput
+    create?: NexusGenInputs['ArtistCreateWithoutSongsInput'] | null; // ArtistCreateWithoutSongsInput
+  }
+  ArtistCreateOrConnectWithoutAlbumsInput: { // input type
+    create: NexusGenInputs['ArtistCreateWithoutAlbumsInput']; // ArtistCreateWithoutAlbumsInput!
+    where: NexusGenInputs['ArtistWhereUniqueInput']; // ArtistWhereUniqueInput!
+  }
+  ArtistCreateOrConnectWithoutSongsInput: { // input type
+    create: NexusGenInputs['ArtistCreateWithoutSongsInput']; // ArtistCreateWithoutSongsInput!
+    where: NexusGenInputs['ArtistWhereUniqueInput']; // ArtistWhereUniqueInput!
+  }
+  ArtistCreateWithoutAlbumsInput: { // input type
+    id?: string | null; // String
+    name: string; // String!
+    songs?: NexusGenInputs['SongCreateNestedManyWithoutArtistInput'] | null; // SongCreateNestedManyWithoutArtistInput
+  }
+  ArtistCreateWithoutSongsInput: { // input type
+    albums?: NexusGenInputs['AlbumCreateNestedManyWithoutArtistInput'] | null; // AlbumCreateNestedManyWithoutArtistInput
+    id?: string | null; // String
+    name: string; // String!
+  }
+  ArtistWhereInput: { // input type
+    AND?: NexusGenInputs['ArtistWhereInput'][] | null; // [ArtistWhereInput!]
+    NOT?: NexusGenInputs['ArtistWhereInput'][] | null; // [ArtistWhereInput!]
+    OR?: NexusGenInputs['ArtistWhereInput'][] | null; // [ArtistWhereInput!]
+    albums?: NexusGenInputs['AlbumListRelationFilter'] | null; // AlbumListRelationFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    songs?: NexusGenInputs['SongListRelationFilter'] | null; // SongListRelationFilter
+  }
+  ArtistWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
+  GenreCreateInput: { // input type
+    id?: string | null; // String
+    name: string; // String!
+    songs?: NexusGenInputs['SongCreateNestedManyWithoutGenresInput'] | null; // SongCreateNestedManyWithoutGenresInput
+  }
+  GenreCreateNestedManyWithoutSongsInput: { // input type
+    connect?: NexusGenInputs['GenreWhereUniqueInput'][] | null; // [GenreWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['GenreCreateOrConnectWithoutSongsInput'][] | null; // [GenreCreateOrConnectWithoutSongsInput!]
+    create?: NexusGenInputs['GenreCreateWithoutSongsInput'][] | null; // [GenreCreateWithoutSongsInput!]
+  }
+  GenreCreateOrConnectWithoutSongsInput: { // input type
+    create: NexusGenInputs['GenreCreateWithoutSongsInput']; // GenreCreateWithoutSongsInput!
+    where: NexusGenInputs['GenreWhereUniqueInput']; // GenreWhereUniqueInput!
+  }
+  GenreCreateWithoutSongsInput: { // input type
+    id?: string | null; // String
+    name: string; // String!
+  }
+  GenreListRelationFilter: { // input type
+    every?: NexusGenInputs['GenreWhereInput'] | null; // GenreWhereInput
+    none?: NexusGenInputs['GenreWhereInput'] | null; // GenreWhereInput
+    some?: NexusGenInputs['GenreWhereInput'] | null; // GenreWhereInput
+  }
+  GenreWhereInput: { // input type
+    AND?: NexusGenInputs['GenreWhereInput'][] | null; // [GenreWhereInput!]
+    NOT?: NexusGenInputs['GenreWhereInput'][] | null; // [GenreWhereInput!]
+    OR?: NexusGenInputs['GenreWhereInput'][] | null; // [GenreWhereInput!]
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    songs?: NexusGenInputs['SongListRelationFilter'] | null; // SongListRelationFilter
+  }
+  GenreWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
+  IntFilter: { // input type
+    equals?: number | null; // Int
+    gt?: number | null; // Int
+    gte?: number | null; // Int
+    in?: number[] | null; // [Int!]
+    lt?: number | null; // Int
+    lte?: number | null; // Int
+    not?: NexusGenInputs['NestedIntFilter'] | null; // NestedIntFilter
+    notIn?: number[] | null; // [Int!]
+  }
+  NestedIntFilter: { // input type
+    equals?: number | null; // Int
+    gt?: number | null; // Int
+    gte?: number | null; // Int
+    in?: number[] | null; // [Int!]
+    lt?: number | null; // Int
+    lte?: number | null; // Int
+    not?: NexusGenInputs['NestedIntFilter'] | null; // NestedIntFilter
+    notIn?: number[] | null; // [Int!]
+  }
+  NestedStringFilter: { // input type
+    contains?: string | null; // String
+    endsWith?: string | null; // String
+    equals?: string | null; // String
+    gt?: string | null; // String
+    gte?: string | null; // String
+    in?: string[] | null; // [String!]
+    lt?: string | null; // String
+    lte?: string | null; // String
+    not?: NexusGenInputs['NestedStringFilter'] | null; // NestedStringFilter
+    notIn?: string[] | null; // [String!]
+    startsWith?: string | null; // String
+  }
+  NestedStringNullableFilter: { // input type
+    contains?: string | null; // String
+    endsWith?: string | null; // String
+    equals?: string | null; // String
+    gt?: string | null; // String
+    gte?: string | null; // String
+    in?: string[] | null; // [String!]
+    lt?: string | null; // String
+    lte?: string | null; // String
+    not?: NexusGenInputs['NestedStringNullableFilter'] | null; // NestedStringNullableFilter
+    notIn?: string[] | null; // [String!]
+    startsWith?: string | null; // String
+  }
+  SongCreateInput: { // input type
+    album: NexusGenInputs['AlbumCreateNestedOneWithoutSongsInput']; // AlbumCreateNestedOneWithoutSongsInput!
+    artist: NexusGenInputs['ArtistCreateNestedOneWithoutSongsInput']; // ArtistCreateNestedOneWithoutSongsInput!
+    cover: string; // String!
+    genres?: NexusGenInputs['GenreCreateNestedManyWithoutSongsInput'] | null; // GenreCreateNestedManyWithoutSongsInput
+    id?: string | null; // String
+    length: number; // Int!
+    name: string; // String!
+  }
+  SongCreateNestedManyWithoutAlbumInput: { // input type
+    connect?: NexusGenInputs['SongWhereUniqueInput'][] | null; // [SongWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['SongCreateOrConnectWithoutAlbumInput'][] | null; // [SongCreateOrConnectWithoutAlbumInput!]
+    create?: NexusGenInputs['SongCreateWithoutAlbumInput'][] | null; // [SongCreateWithoutAlbumInput!]
+  }
+  SongCreateNestedManyWithoutArtistInput: { // input type
+    connect?: NexusGenInputs['SongWhereUniqueInput'][] | null; // [SongWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['SongCreateOrConnectWithoutArtistInput'][] | null; // [SongCreateOrConnectWithoutArtistInput!]
+    create?: NexusGenInputs['SongCreateWithoutArtistInput'][] | null; // [SongCreateWithoutArtistInput!]
+  }
+  SongCreateNestedManyWithoutGenresInput: { // input type
+    connect?: NexusGenInputs['SongWhereUniqueInput'][] | null; // [SongWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['SongCreateOrConnectWithoutGenresInput'][] | null; // [SongCreateOrConnectWithoutGenresInput!]
+    create?: NexusGenInputs['SongCreateWithoutGenresInput'][] | null; // [SongCreateWithoutGenresInput!]
+  }
+  SongCreateOrConnectWithoutAlbumInput: { // input type
+    create: NexusGenInputs['SongCreateWithoutAlbumInput']; // SongCreateWithoutAlbumInput!
+    where: NexusGenInputs['SongWhereUniqueInput']; // SongWhereUniqueInput!
+  }
+  SongCreateOrConnectWithoutArtistInput: { // input type
+    create: NexusGenInputs['SongCreateWithoutArtistInput']; // SongCreateWithoutArtistInput!
+    where: NexusGenInputs['SongWhereUniqueInput']; // SongWhereUniqueInput!
+  }
+  SongCreateOrConnectWithoutGenresInput: { // input type
+    create: NexusGenInputs['SongCreateWithoutGenresInput']; // SongCreateWithoutGenresInput!
+    where: NexusGenInputs['SongWhereUniqueInput']; // SongWhereUniqueInput!
+  }
+  SongCreateWithoutAlbumInput: { // input type
+    artist: NexusGenInputs['ArtistCreateNestedOneWithoutSongsInput']; // ArtistCreateNestedOneWithoutSongsInput!
+    cover: string; // String!
+    genres?: NexusGenInputs['GenreCreateNestedManyWithoutSongsInput'] | null; // GenreCreateNestedManyWithoutSongsInput
+    id?: string | null; // String
+    length: number; // Int!
+    name: string; // String!
+  }
+  SongCreateWithoutArtistInput: { // input type
+    album: NexusGenInputs['AlbumCreateNestedOneWithoutSongsInput']; // AlbumCreateNestedOneWithoutSongsInput!
+    cover: string; // String!
+    genres?: NexusGenInputs['GenreCreateNestedManyWithoutSongsInput'] | null; // GenreCreateNestedManyWithoutSongsInput
+    id?: string | null; // String
+    length: number; // Int!
+    name: string; // String!
+  }
+  SongCreateWithoutGenresInput: { // input type
+    album: NexusGenInputs['AlbumCreateNestedOneWithoutSongsInput']; // AlbumCreateNestedOneWithoutSongsInput!
+    artist: NexusGenInputs['ArtistCreateNestedOneWithoutSongsInput']; // ArtistCreateNestedOneWithoutSongsInput!
+    cover: string; // String!
+    id?: string | null; // String
+    length: number; // Int!
+    name: string; // String!
+  }
+  SongListRelationFilter: { // input type
+    every?: NexusGenInputs['SongWhereInput'] | null; // SongWhereInput
+    none?: NexusGenInputs['SongWhereInput'] | null; // SongWhereInput
+    some?: NexusGenInputs['SongWhereInput'] | null; // SongWhereInput
+  }
+  SongWhereInput: { // input type
+    AND?: NexusGenInputs['SongWhereInput'][] | null; // [SongWhereInput!]
+    NOT?: NexusGenInputs['SongWhereInput'][] | null; // [SongWhereInput!]
+    OR?: NexusGenInputs['SongWhereInput'][] | null; // [SongWhereInput!]
+    album?: NexusGenInputs['AlbumWhereInput'] | null; // AlbumWhereInput
+    albumId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    artist?: NexusGenInputs['ArtistWhereInput'] | null; // ArtistWhereInput
+    artistId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    cover?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    genres?: NexusGenInputs['GenreListRelationFilter'] | null; // GenreListRelationFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    length?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
+  }
+  SongWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
+  StringFilter: { // input type
+    contains?: string | null; // String
+    endsWith?: string | null; // String
+    equals?: string | null; // String
+    gt?: string | null; // String
+    gte?: string | null; // String
+    in?: string[] | null; // [String!]
+    lt?: string | null; // String
+    lte?: string | null; // String
+    not?: NexusGenInputs['NestedStringFilter'] | null; // NestedStringFilter
+    notIn?: string[] | null; // [String!]
+    startsWith?: string | null; // String
+  }
+  StringNullableFilter: { // input type
+    contains?: string | null; // String
+    endsWith?: string | null; // String
+    equals?: string | null; // String
+    gt?: string | null; // String
+    gte?: string | null; // String
+    in?: string[] | null; // [String!]
+    lt?: string | null; // String
+    lte?: string | null; // String
+    not?: NexusGenInputs['NestedStringNullableFilter'] | null; // NestedStringNullableFilter
+    notIn?: string[] | null; // [String!]
+    startsWith?: string | null; // String
+  }
 }
 
 export interface NexusGenEnums {
@@ -28,37 +319,25 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
-  Chat: { // root type
-    chatId?: string | null; // String
-    members?: Array<NexusGenRootTypes['ChatPerson'] | null> | null; // [ChatPerson]
-    messages?: Array<NexusGenRootTypes['Messages'] | null> | null; // [Messages]
+  Album: { // root type
+    id: string; // String!
+    name: string; // String!
   }
-  ChatPerson: { // root type
-    email?: string | null; // String
-    name?: string | null; // String
+  Artist: { // root type
+    id: string; // String!
+    name: string; // String!
   }
-  Messages: { // root type
-    content?: string | null; // String
-    date?: string | null; // String
-    from?: string | null; // String
-    sentiment?: number | null; // Int
+  Genre: { // root type
+    id: string; // String!
+    name: string; // String!
   }
   Mutation: {};
-  Note: { // root type
-    email?: string | null; // String
-    list?: Array<NexusGenRootTypes['NoteDescription'] | null> | null; // [NoteDescription]
-  }
-  NoteDescription: { // root type
-    desc?: string | null; // String
-  }
   Query: {};
-  Todo: { // root type
-    email?: string | null; // String
-    list?: Array<NexusGenRootTypes['TodoDescription'] | null> | null; // [TodoDescription]
-  }
-  TodoDescription: { // root type
-    desc?: string | null; // String
-    status?: boolean | null; // Boolean
+  Song: { // root type
+    cover: string; // String!
+    id: string; // String!
+    length: number; // Int!
+    name: string; // String!
   }
 }
 
@@ -73,138 +352,208 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
-  Chat: { // field return type
-    chatId: string | null; // String
-    members: Array<NexusGenRootTypes['ChatPerson'] | null> | null; // [ChatPerson]
-    messages: Array<NexusGenRootTypes['Messages'] | null> | null; // [Messages]
+  Album: { // field return type
+    Artist: NexusGenRootTypes['Artist'] | null; // Artist
+    id: string; // String!
+    name: string; // String!
+    songs: NexusGenRootTypes['Song'][]; // [Song!]!
   }
-  ChatPerson: { // field return type
-    email: string | null; // String
-    name: string | null; // String
+  Artist: { // field return type
+    albums: NexusGenRootTypes['Album'][]; // [Album!]!
+    id: string; // String!
+    name: string; // String!
+    songs: NexusGenRootTypes['Song'][]; // [Song!]!
   }
-  Messages: { // field return type
-    content: string | null; // String
-    date: string | null; // String
-    from: string | null; // String
-    sentiment: number | null; // Int
+  Genre: { // field return type
+    id: string; // String!
+    name: string; // String!
+    songs: NexusGenRootTypes['Song'][]; // [Song!]!
   }
   Mutation: { // field return type
-    completeTodo: NexusGenRootTypes['Todo'] | null; // Todo
-    createChat: NexusGenRootTypes['Chat'] | null; // Chat
-    createNote: NexusGenRootTypes['Note'] | null; // Note
-    createTodo: NexusGenRootTypes['Todo'] | null; // Todo
-    deleteNote: NexusGenRootTypes['Note'] | null; // Note
-    deleteTodo: NexusGenRootTypes['Todo'] | null; // Todo
-  }
-  Note: { // field return type
-    email: string | null; // String
-    list: Array<NexusGenRootTypes['NoteDescription'] | null> | null; // [NoteDescription]
-  }
-  NoteDescription: { // field return type
-    desc: string | null; // String
+    createOneAlbum: NexusGenRootTypes['Album']; // Album!
+    createOneArtist: NexusGenRootTypes['Artist']; // Artist!
+    createOneGenre: NexusGenRootTypes['Genre']; // Genre!
+    createOneSong: NexusGenRootTypes['Song']; // Song!
+    deleteOneAlbum: NexusGenRootTypes['Album'] | null; // Album
+    deleteOneArtist: NexusGenRootTypes['Artist'] | null; // Artist
+    deleteOneGenre: NexusGenRootTypes['Genre'] | null; // Genre
+    deleteOneSong: NexusGenRootTypes['Song'] | null; // Song
   }
   Query: { // field return type
-    ChatByChatId: NexusGenRootTypes['Chat'] | null; // Chat
-    ChatsByEmail: Array<NexusGenRootTypes['Chat'] | null> | null; // [Chat]
-    NoteByEmail: NexusGenRootTypes['Note'] | null; // Note
-    TodoByEmail: NexusGenRootTypes['Todo'] | null; // Todo
+    album: NexusGenRootTypes['Album'] | null; // Album
+    albums: NexusGenRootTypes['Album'][]; // [Album!]!
+    artist: NexusGenRootTypes['Artist'] | null; // Artist
+    artists: NexusGenRootTypes['Artist'][]; // [Artist!]!
+    genre: NexusGenRootTypes['Genre'] | null; // Genre
+    genres: NexusGenRootTypes['Genre'][]; // [Genre!]!
+    song: NexusGenRootTypes['Song'] | null; // Song
+    songs: NexusGenRootTypes['Song'][]; // [Song!]!
   }
-  Todo: { // field return type
-    email: string | null; // String
-    list: Array<NexusGenRootTypes['TodoDescription'] | null> | null; // [TodoDescription]
-  }
-  TodoDescription: { // field return type
-    desc: string | null; // String
-    status: boolean | null; // Boolean
+  Song: { // field return type
+    album: NexusGenRootTypes['Album']; // Album!
+    artist: NexusGenRootTypes['Artist']; // Artist!
+    cover: string; // String!
+    genres: NexusGenRootTypes['Genre'][]; // [Genre!]!
+    id: string; // String!
+    length: number; // Int!
+    name: string; // String!
   }
 }
 
 export interface NexusGenFieldTypeNames {
-  Chat: { // field return type name
-    chatId: 'String'
-    members: 'ChatPerson'
-    messages: 'Messages'
-  }
-  ChatPerson: { // field return type name
-    email: 'String'
+  Album: { // field return type name
+    Artist: 'Artist'
+    id: 'String'
     name: 'String'
+    songs: 'Song'
   }
-  Messages: { // field return type name
-    content: 'String'
-    date: 'String'
-    from: 'String'
-    sentiment: 'Int'
+  Artist: { // field return type name
+    albums: 'Album'
+    id: 'String'
+    name: 'String'
+    songs: 'Song'
+  }
+  Genre: { // field return type name
+    id: 'String'
+    name: 'String'
+    songs: 'Song'
   }
   Mutation: { // field return type name
-    completeTodo: 'Todo'
-    createChat: 'Chat'
-    createNote: 'Note'
-    createTodo: 'Todo'
-    deleteNote: 'Note'
-    deleteTodo: 'Todo'
-  }
-  Note: { // field return type name
-    email: 'String'
-    list: 'NoteDescription'
-  }
-  NoteDescription: { // field return type name
-    desc: 'String'
+    createOneAlbum: 'Album'
+    createOneArtist: 'Artist'
+    createOneGenre: 'Genre'
+    createOneSong: 'Song'
+    deleteOneAlbum: 'Album'
+    deleteOneArtist: 'Artist'
+    deleteOneGenre: 'Genre'
+    deleteOneSong: 'Song'
   }
   Query: { // field return type name
-    ChatByChatId: 'Chat'
-    ChatsByEmail: 'Chat'
-    NoteByEmail: 'Note'
-    TodoByEmail: 'Todo'
+    album: 'Album'
+    albums: 'Album'
+    artist: 'Artist'
+    artists: 'Artist'
+    genre: 'Genre'
+    genres: 'Genre'
+    song: 'Song'
+    songs: 'Song'
   }
-  Todo: { // field return type name
-    email: 'String'
-    list: 'TodoDescription'
-  }
-  TodoDescription: { // field return type name
-    desc: 'String'
-    status: 'Boolean'
+  Song: { // field return type name
+    album: 'Album'
+    artist: 'Artist'
+    cover: 'String'
+    genres: 'Genre'
+    id: 'String'
+    length: 'Int'
+    name: 'String'
   }
 }
 
 export interface NexusGenArgTypes {
+  Album: {
+    songs: { // args
+      after?: NexusGenInputs['SongWhereUniqueInput'] | null; // SongWhereUniqueInput
+      before?: NexusGenInputs['SongWhereUniqueInput'] | null; // SongWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+  }
+  Artist: {
+    albums: { // args
+      after?: NexusGenInputs['AlbumWhereUniqueInput'] | null; // AlbumWhereUniqueInput
+      before?: NexusGenInputs['AlbumWhereUniqueInput'] | null; // AlbumWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+    songs: { // args
+      after?: NexusGenInputs['SongWhereUniqueInput'] | null; // SongWhereUniqueInput
+      before?: NexusGenInputs['SongWhereUniqueInput'] | null; // SongWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+  }
+  Genre: {
+    songs: { // args
+      after?: NexusGenInputs['SongWhereUniqueInput'] | null; // SongWhereUniqueInput
+      before?: NexusGenInputs['SongWhereUniqueInput'] | null; // SongWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+  }
   Mutation: {
-    completeTodo: { // args
-      desc: string; // String!
-      email: string; // String!
+    createOneAlbum: { // args
+      data: NexusGenInputs['AlbumCreateInput']; // AlbumCreateInput!
     }
-    createChat: { // args
-      email: string; // String!
-      name: string; // String!
+    createOneArtist: { // args
+      data: NexusGenInputs['ArtistCreateInput']; // ArtistCreateInput!
     }
-    createNote: { // args
-      desc: string; // String!
-      email: string; // String!
+    createOneGenre: { // args
+      data: NexusGenInputs['GenreCreateInput']; // GenreCreateInput!
     }
-    createTodo: { // args
-      desc: string; // String!
-      email: string; // String!
+    createOneSong: { // args
+      data: NexusGenInputs['SongCreateInput']; // SongCreateInput!
     }
-    deleteNote: { // args
-      desc: string; // String!
-      email: string; // String!
+    deleteOneAlbum: { // args
+      where: NexusGenInputs['AlbumWhereUniqueInput']; // AlbumWhereUniqueInput!
     }
-    deleteTodo: { // args
-      desc: string; // String!
-      email: string; // String!
+    deleteOneArtist: { // args
+      where: NexusGenInputs['ArtistWhereUniqueInput']; // ArtistWhereUniqueInput!
+    }
+    deleteOneGenre: { // args
+      where: NexusGenInputs['GenreWhereUniqueInput']; // GenreWhereUniqueInput!
+    }
+    deleteOneSong: { // args
+      where: NexusGenInputs['SongWhereUniqueInput']; // SongWhereUniqueInput!
     }
   }
   Query: {
-    ChatByChatId: { // args
-      chatId?: string | null; // ID
+    album: { // args
+      where: NexusGenInputs['AlbumWhereUniqueInput']; // AlbumWhereUniqueInput!
     }
-    ChatsByEmail: { // args
-      email?: string | null; // ID
+    albums: { // args
+      after?: NexusGenInputs['AlbumWhereUniqueInput'] | null; // AlbumWhereUniqueInput
+      before?: NexusGenInputs['AlbumWhereUniqueInput'] | null; // AlbumWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+      where?: NexusGenInputs['AlbumWhereInput'] | null; // AlbumWhereInput
     }
-    NoteByEmail: { // args
-      email?: string | null; // ID
+    artist: { // args
+      where: NexusGenInputs['ArtistWhereUniqueInput']; // ArtistWhereUniqueInput!
     }
-    TodoByEmail: { // args
-      email?: string | null; // ID
+    artists: { // args
+      after?: NexusGenInputs['ArtistWhereUniqueInput'] | null; // ArtistWhereUniqueInput
+      before?: NexusGenInputs['ArtistWhereUniqueInput'] | null; // ArtistWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+      where?: NexusGenInputs['ArtistWhereInput'] | null; // ArtistWhereInput
+    }
+    genre: { // args
+      where: NexusGenInputs['GenreWhereUniqueInput']; // GenreWhereUniqueInput!
+    }
+    genres: { // args
+      after?: NexusGenInputs['GenreWhereUniqueInput'] | null; // GenreWhereUniqueInput
+      before?: NexusGenInputs['GenreWhereUniqueInput'] | null; // GenreWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+      where?: NexusGenInputs['GenreWhereInput'] | null; // GenreWhereInput
+    }
+    song: { // args
+      where: NexusGenInputs['SongWhereUniqueInput']; // SongWhereUniqueInput!
+    }
+    songs: { // args
+      after?: NexusGenInputs['SongWhereUniqueInput'] | null; // SongWhereUniqueInput
+      before?: NexusGenInputs['SongWhereUniqueInput'] | null; // SongWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+      where?: NexusGenInputs['SongWhereInput'] | null; // SongWhereInput
+    }
+  }
+  Song: {
+    genres: { // args
+      after?: NexusGenInputs['GenreWhereUniqueInput'] | null; // GenreWhereUniqueInput
+      before?: NexusGenInputs['GenreWhereUniqueInput'] | null; // GenreWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
     }
   }
 }
@@ -217,7 +566,7 @@ export interface NexusGenTypeInterfaces {
 
 export type NexusGenObjectNames = keyof NexusGenObjects;
 
-export type NexusGenInputNames = never;
+export type NexusGenInputNames = keyof NexusGenInputs;
 
 export type NexusGenEnumNames = never;
 

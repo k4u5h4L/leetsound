@@ -18,23 +18,26 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "migrate:prisma": "npx prisma migrate dev --preview-feature",
-        "dbpush:prisma": "npx prisma db push",
-        "introspect:prisma": "npx prisma introspect",
-        "studio:prisma": "npx prisma studio",
-        "format:prisma": "npx prisma format"
+        "migrate:prisma": "prisma migrate dev --preview-feature",
+        "dbpush:prisma": "prisma db push",
+        "generate:prisma": "prisma generate",
+        "introspect:prisma": "prisma introspect",
+        "studio:prisma": "prisma studio",
+        "format:prisma": "prisma format"
     },
     "dependencies": {
         "@apollo/client": "^3.3.15",
         "@ideasio/add-to-homescreen-react": "^1.0.7",
         "@prisma/client": "^2.24.1",
         "apollo-server-micro": "^2.23.0",
+        "dataloader": "^2.0.0",
         "graphql": "^15.5.0",
-        "next": "10.2.0",
+        "next": "10.2.3",
         "next-auth": "^3.13.2",
         "next-pwa": "^5.0.6",
-        "nextjs-progressbar": "^0.0.9",
+        "nextjs-progressbar": "^0.0.10",
         "nexus": "^1.0.0",
+        "nexus-plugin-prisma": "^0.35.0",
         "react": "^17.0.1",
         "react-audio-player": "^0.17.0",
         "react-dom": "^17.0.1",
@@ -51,7 +54,7 @@
         "eslint": "^7.22.0",
         "eslint-plugin-react": "^7.22.0",
         "prettier": "^2.2.1",
-        "prima": "^0.0.1",
+        "prisma": "^2.24.1",
         "typescript": "^4.2.3"
     }
 }
