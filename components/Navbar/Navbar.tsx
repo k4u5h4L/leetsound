@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
     return (
@@ -9,7 +10,18 @@ export default function Navbar() {
                     <div className="uk-navbar-left">
                         <Link href="/">
                             <a className="uk-navbar-item uk-logo">
-                                <img src="/images/logo%402x.png" alt="logo" />
+                                {/* <Image
+                                    src="/images/logo@2x-old.png"
+                                    alt="logo"
+                                    width={202}
+                                    height={38}
+                                /> */}
+                                <Image
+                                    src="/images/logo.png"
+                                    alt="logo"
+                                    width={160}
+                                    height={60}
+                                />
                             </a>
                         </Link>
                         <ul

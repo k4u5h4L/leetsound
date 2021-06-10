@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { signIn, signOut, useSession } from "next-auth/client";
+import Link from "next/link";
 import Image from "next/image";
 
 export default function Login() {
@@ -39,12 +40,16 @@ export default function Login() {
                 {!session ? (
                     <div className="uk-width-3-4@s">
                         <div className="uk-text-center uk-margin-bottom">
-                            <a
-                                className="uk-navbar-item uk-logo"
-                                href="index.html"
-                            >
-                                <img src="images/logo%402x.png" alt="logo" />
-                            </a>
+                            <Link href="/">
+                                <a className="uk-navbar-item uk-logo">
+                                    <Image
+                                        src="/images/logo-full.png"
+                                        alt="logo"
+                                        width={270}
+                                        height={220}
+                                    />
+                                </a>
+                            </Link>
                         </div>
                         <div className="uk-text-center uk-margin-medium-bottom">
                             <h1 className="uk-h2 uk-letter-spacing-small">
@@ -155,12 +160,14 @@ export default function Login() {
                 ) : (
                     <div className="uk-width-3-4@s">
                         <div className="uk-text-center uk-margin-bottom">
-                            <a
-                                className="uk-navbar-item uk-logo"
-                                href="index.html"
-                            >
-                                <img src="/images/logo%402x.png" alt="logo" />
-                            </a>
+                            <Link href="/">
+                                <a className="uk-navbar-item uk-logo">
+                                    <img
+                                        src="/images/logo%402x.png"
+                                        alt="logo"
+                                    />
+                                </a>
+                            </Link>
                         </div>
                         <div className="uk-text-center uk-margin-medium-bottom">
                             <h4 className="uk-h2 uk-letter-spacing-small">

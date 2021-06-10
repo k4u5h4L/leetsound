@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Verify() {
+export default function NotFound() {
     return (
         <div className="uk-grid-collapse" data-uk-grid>
             <div
@@ -30,13 +30,23 @@ export default function Verify() {
                     </div>
                     <div className="uk-text-center uk-margin-medium-bottom">
                         <h4 className="uk-h2 uk-letter-spacing-small">
-                            We have sent a verification email to the email you
-                            provided. Click on the link to be logged in.
-                            <br />
-                            <br />
-                            If its your first time here, then your account will
-                            be created!
+                            Oops, the page you&apos;re looking for is not found!
                         </h4>
+                    </div>
+                    <div className="uk-width-1-1 uk-text-center">
+                        <Link href="/">
+                            <a
+                                className="
+                                    uk-button
+                                    uk-button-primary
+                                    uk-width-1-1
+                                    uk-margin-small-bottom
+                                "
+                                type="submit"
+                            >
+                                Go to home page
+                            </a>
+                        </Link>
                     </div>
                 </div>
             </div>

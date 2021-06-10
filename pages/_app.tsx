@@ -26,27 +26,33 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <meta name="format-detection" content="telephone=no" />
                 <meta name="theme-color" content="#33a16e" />
                 <title>leetsound</title>
-                <meta name="author" content="meteors" />
+                <meta name="author" content="kaushal" />
                 <meta
                     name="description"
-                    content="MUSICO - Premium Music Download Site Html Template"
+                    content="lossless music streaming site"
                 />
                 <meta
                     name="keywords"
-                    content="creative, works, showcase, portfolio, highlight, music, parallax, digital, studio, css, animation, transition, svg, html, css"
+                    content="music, streaming, sound, audio, css, animation, transition, svg, html, css"
                 />
                 <meta
                     property="og:description"
-                    content="MUSICO - Premium Music Download Site Html Template"
+                    content="lossless music streaming site"
                 />
-                <meta name="twitter:card" content="summary" />
-                <meta name="twitter:site" content="@MUSICO" />
-                <meta name="twitter:creator" content="@MUSICO" />
-                <meta name="twitter:title" content="MUSICO" />
-                <meta name="twitter:description" content="MUSICO " />
+                <meta
+                    name="twitter:card"
+                    content="lossless music streaming site"
+                />
+                <meta name="twitter:site" content="@leetsound" />
+                <meta name="twitter:creator" content="@leetsound" />
+                <meta name="twitter:title" content="leetsound" />
+                <meta
+                    name="twitter:description"
+                    content="lossless music streaming site "
+                />
             </Head>
             <NextNprogress
-                color="#ffffff"
+                color="#000000"
                 startPosition={0.3}
                 stopDelayMs={200}
                 height={3}
