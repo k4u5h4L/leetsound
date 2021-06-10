@@ -56,6 +56,12 @@ input AlbumListRelationFilter {
   some: AlbumWhereInput
 }
 
+input AlbumOrderByInput {
+  artistId: SortOrder
+  id: SortOrder
+  name: SortOrder
+}
+
 input AlbumWhereInput {
   AND: [AlbumWhereInput!]
   Artist: ArtistWhereInput
@@ -119,6 +125,11 @@ input ArtistCreateWithoutSongsInput {
   name: String!
 }
 
+input ArtistOrderByInput {
+  id: SortOrder
+  name: SortOrder
+}
+
 input ArtistWhereInput {
   AND: [ArtistWhereInput!]
   NOT: [ArtistWhereInput!]
@@ -165,6 +176,11 @@ input GenreListRelationFilter {
   every: GenreWhereInput
   none: GenreWhereInput
   some: GenreWhereInput
+}
+
+input GenreOrderByInput {
+  id: SortOrder
+  name: SortOrder
 }
 
 input GenreWhereInput {
@@ -243,13 +259,13 @@ input NestedStringNullableFilter {
 
 type Query {
   album(where: AlbumWhereUniqueInput!): Album
-  albums(after: AlbumWhereUniqueInput, before: AlbumWhereUniqueInput, first: Int, last: Int, where: AlbumWhereInput): [Album!]!
+  albums(after: AlbumWhereUniqueInput, before: AlbumWhereUniqueInput, first: Int, last: Int, orderBy: [AlbumOrderByInput!], where: AlbumWhereInput): [Album!]!
   artist(where: ArtistWhereUniqueInput!): Artist
-  artists(after: ArtistWhereUniqueInput, before: ArtistWhereUniqueInput, first: Int, last: Int, where: ArtistWhereInput): [Artist!]!
+  artists(after: ArtistWhereUniqueInput, before: ArtistWhereUniqueInput, first: Int, last: Int, orderBy: [ArtistOrderByInput!], where: ArtistWhereInput): [Artist!]!
   genre(where: GenreWhereUniqueInput!): Genre
-  genres(after: GenreWhereUniqueInput, before: GenreWhereUniqueInput, first: Int, last: Int, where: GenreWhereInput): [Genre!]!
+  genres(after: GenreWhereUniqueInput, before: GenreWhereUniqueInput, first: Int, last: Int, orderBy: [GenreOrderByInput!], where: GenreWhereInput): [Genre!]!
   song(where: SongWhereUniqueInput!): Song
-  songs(after: SongWhereUniqueInput, before: SongWhereUniqueInput, first: Int, last: Int, where: SongWhereInput): [Song!]!
+  songs(after: SongWhereUniqueInput, before: SongWhereUniqueInput, first: Int, last: Int, orderBy: [SongOrderByInput!], where: SongWhereInput): [Song!]!
 }
 
 type Song {
@@ -260,6 +276,7 @@ type Song {
   id: String!
   length: Int!
   name: String!
+  rating: Int!
 }
 
 input SongCreateInput {
@@ -270,6 +287,7 @@ input SongCreateInput {
   id: String
   length: Int!
   name: String!
+  rating: Int!
 }
 
 input SongCreateNestedManyWithoutAlbumInput {
@@ -312,6 +330,7 @@ input SongCreateWithoutAlbumInput {
   id: String
   length: Int!
   name: String!
+  rating: Int!
 }
 
 input SongCreateWithoutArtistInput {
@@ -321,6 +340,7 @@ input SongCreateWithoutArtistInput {
   id: String
   length: Int!
   name: String!
+  rating: Int!
 }
 
 input SongCreateWithoutGenresInput {
@@ -330,12 +350,23 @@ input SongCreateWithoutGenresInput {
   id: String
   length: Int!
   name: String!
+  rating: Int!
 }
 
 input SongListRelationFilter {
   every: SongWhereInput
   none: SongWhereInput
   some: SongWhereInput
+}
+
+input SongOrderByInput {
+  albumId: SortOrder
+  artistId: SortOrder
+  cover: SortOrder
+  id: SortOrder
+  length: SortOrder
+  name: SortOrder
+  rating: SortOrder
 }
 
 input SongWhereInput {
@@ -351,10 +382,16 @@ input SongWhereInput {
   id: StringFilter
   length: IntFilter
   name: StringFilter
+  rating: IntFilter
 }
 
 input SongWhereUniqueInput {
   id: String
+}
+
+enum SortOrder {
+  asc
+  desc
 }
 
 input StringFilter {

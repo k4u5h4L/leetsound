@@ -6,7 +6,11 @@ import Ads from "@/components/Home/Ads/Ads";
 import Footer from "@/components/Footer/Footer";
 import BottomLinks from "@/components/BottomLinks/BottomLinks";
 
-import AudioPlayer from "react-h5-audio-player";
+import dynamic from "next/dynamic";
+
+const Player = dynamic(() => import("@/components/Player/Player"), {
+    ssr: false,
+});
 
 export default function Search() {
     return (
@@ -17,13 +21,7 @@ export default function Search() {
             <Footer />
             <BottomLinks />
 
-            <AudioPlayer
-                autoPlay={false}
-                src="/api/song/1"
-                onPlay={(e) => console.log("onPlay")}
-                // other props here
-                style={{ bottom: 0, position: "fixed", right: 0 }}
-            />
+            <Player />
         </>
     );
 }

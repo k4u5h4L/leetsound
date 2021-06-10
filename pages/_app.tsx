@@ -9,7 +9,8 @@ import { useApollo } from "@/graphql/apolloClient";
 
 import NextNprogress from "nextjs-progressbar";
 
-import "react-h5-audio-player/lib/styles.css";
+// import "react-h5-audio-player/lib/styles.css";
+import "react-jinke-music-player/assets/index.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
     const client = useApollo();

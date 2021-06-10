@@ -58,6 +58,11 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['AlbumWhereInput'] | null; // AlbumWhereInput
     some?: NexusGenInputs['AlbumWhereInput'] | null; // AlbumWhereInput
   }
+  AlbumOrderByInput: { // input type
+    artistId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
   AlbumWhereInput: { // input type
     AND?: NexusGenInputs['AlbumWhereInput'][] | null; // [AlbumWhereInput!]
     Artist?: NexusGenInputs['ArtistWhereInput'] | null; // ArtistWhereInput
@@ -105,6 +110,10 @@ export interface NexusGenInputs {
     id?: string | null; // String
     name: string; // String!
   }
+  ArtistOrderByInput: { // input type
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
   ArtistWhereInput: { // input type
     AND?: NexusGenInputs['ArtistWhereInput'][] | null; // [ArtistWhereInput!]
     NOT?: NexusGenInputs['ArtistWhereInput'][] | null; // [ArtistWhereInput!]
@@ -139,6 +148,10 @@ export interface NexusGenInputs {
     every?: NexusGenInputs['GenreWhereInput'] | null; // GenreWhereInput
     none?: NexusGenInputs['GenreWhereInput'] | null; // GenreWhereInput
     some?: NexusGenInputs['GenreWhereInput'] | null; // GenreWhereInput
+  }
+  GenreOrderByInput: { // input type
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   GenreWhereInput: { // input type
     AND?: NexusGenInputs['GenreWhereInput'][] | null; // [GenreWhereInput!]
@@ -205,6 +218,7 @@ export interface NexusGenInputs {
     id?: string | null; // String
     length: number; // Int!
     name: string; // String!
+    rating: number; // Int!
   }
   SongCreateNestedManyWithoutAlbumInput: { // input type
     connect?: NexusGenInputs['SongWhereUniqueInput'][] | null; // [SongWhereUniqueInput!]
@@ -240,6 +254,7 @@ export interface NexusGenInputs {
     id?: string | null; // String
     length: number; // Int!
     name: string; // String!
+    rating: number; // Int!
   }
   SongCreateWithoutArtistInput: { // input type
     album: NexusGenInputs['AlbumCreateNestedOneWithoutSongsInput']; // AlbumCreateNestedOneWithoutSongsInput!
@@ -248,6 +263,7 @@ export interface NexusGenInputs {
     id?: string | null; // String
     length: number; // Int!
     name: string; // String!
+    rating: number; // Int!
   }
   SongCreateWithoutGenresInput: { // input type
     album: NexusGenInputs['AlbumCreateNestedOneWithoutSongsInput']; // AlbumCreateNestedOneWithoutSongsInput!
@@ -256,11 +272,21 @@ export interface NexusGenInputs {
     id?: string | null; // String
     length: number; // Int!
     name: string; // String!
+    rating: number; // Int!
   }
   SongListRelationFilter: { // input type
     every?: NexusGenInputs['SongWhereInput'] | null; // SongWhereInput
     none?: NexusGenInputs['SongWhereInput'] | null; // SongWhereInput
     some?: NexusGenInputs['SongWhereInput'] | null; // SongWhereInput
+  }
+  SongOrderByInput: { // input type
+    albumId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    artistId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    cover?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    length?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    rating?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   SongWhereInput: { // input type
     AND?: NexusGenInputs['SongWhereInput'][] | null; // [SongWhereInput!]
@@ -275,6 +301,7 @@ export interface NexusGenInputs {
     id?: NexusGenInputs['StringFilter'] | null; // StringFilter
     length?: NexusGenInputs['IntFilter'] | null; // IntFilter
     name?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    rating?: NexusGenInputs['IntFilter'] | null; // IntFilter
   }
   SongWhereUniqueInput: { // input type
     id?: string | null; // String
@@ -308,6 +335,7 @@ export interface NexusGenInputs {
 }
 
 export interface NexusGenEnums {
+  SortOrder: "asc" | "desc"
 }
 
 export interface NexusGenScalars {
@@ -338,6 +366,7 @@ export interface NexusGenObjects {
     id: string; // String!
     length: number; // Int!
     name: string; // String!
+    rating: number; // Int!
   }
 }
 
@@ -349,7 +378,7 @@ export interface NexusGenUnions {
 
 export type NexusGenRootTypes = NexusGenObjects
 
-export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
+export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars & NexusGenEnums
 
 export interface NexusGenFieldTypes {
   Album: { // field return type
@@ -397,6 +426,7 @@ export interface NexusGenFieldTypes {
     id: string; // String!
     length: number; // Int!
     name: string; // String!
+    rating: number; // Int!
   }
 }
 
@@ -446,6 +476,7 @@ export interface NexusGenFieldTypeNames {
     id: 'String'
     length: 'Int'
     name: 'String'
+    rating: 'Int'
   }
 }
 
@@ -515,6 +546,7 @@ export interface NexusGenArgTypes {
       before?: NexusGenInputs['AlbumWhereUniqueInput'] | null; // AlbumWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
+      orderBy?: NexusGenInputs['AlbumOrderByInput'][] | null; // [AlbumOrderByInput!]
       where?: NexusGenInputs['AlbumWhereInput'] | null; // AlbumWhereInput
     }
     artist: { // args
@@ -525,6 +557,7 @@ export interface NexusGenArgTypes {
       before?: NexusGenInputs['ArtistWhereUniqueInput'] | null; // ArtistWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
+      orderBy?: NexusGenInputs['ArtistOrderByInput'][] | null; // [ArtistOrderByInput!]
       where?: NexusGenInputs['ArtistWhereInput'] | null; // ArtistWhereInput
     }
     genre: { // args
@@ -535,6 +568,7 @@ export interface NexusGenArgTypes {
       before?: NexusGenInputs['GenreWhereUniqueInput'] | null; // GenreWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
+      orderBy?: NexusGenInputs['GenreOrderByInput'][] | null; // [GenreOrderByInput!]
       where?: NexusGenInputs['GenreWhereInput'] | null; // GenreWhereInput
     }
     song: { // args
@@ -545,6 +579,7 @@ export interface NexusGenArgTypes {
       before?: NexusGenInputs['SongWhereUniqueInput'] | null; // SongWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
+      orderBy?: NexusGenInputs['SongOrderByInput'][] | null; // [SongOrderByInput!]
       where?: NexusGenInputs['SongWhereInput'] | null; // SongWhereInput
     }
   }
@@ -568,7 +603,7 @@ export type NexusGenObjectNames = keyof NexusGenObjects;
 
 export type NexusGenInputNames = keyof NexusGenInputs;
 
-export type NexusGenEnumNames = never;
+export type NexusGenEnumNames = keyof NexusGenEnums;
 
 export type NexusGenInterfaceNames = never;
 

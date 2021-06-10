@@ -13,7 +13,7 @@ export const Query = queryType({
             },
         });
 
-        t.crud.songs({ pagination: true, filtering: true });
+        t.crud.songs({ pagination: true, filtering: true, ordering: true });
 
         t.crud.album({
             resolve: (_root, args, ctx: GraphQLContext) => {
@@ -23,7 +23,7 @@ export const Query = queryType({
             },
         });
 
-        t.crud.albums({ pagination: true, filtering: true });
+        t.crud.albums({ pagination: true, filtering: true, ordering: true });
 
         t.crud.genre({
             resolve: (_root, args, ctx: GraphQLContext) => {
@@ -33,7 +33,7 @@ export const Query = queryType({
             },
         });
 
-        t.crud.genres({ pagination: true, filtering: true });
+        t.crud.genres({ pagination: true, filtering: true, ordering: true });
 
         t.crud.artist({
             resolve: (_root, args, ctx: GraphQLContext) => {
@@ -43,6 +43,6 @@ export const Query = queryType({
             },
         });
 
-        t.crud.artists({ pagination: true, filtering: true });
+        t.crud.artists({ pagination: true, filtering: true, ordering: true });
     },
 });

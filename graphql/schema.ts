@@ -1,3 +1,4 @@
+// @ts-ignorets
 import { makeSchema } from "nexus";
 import path from "path";
 import { nexusSchemaPrisma } from "nexus-plugin-prisma/schema";
@@ -9,7 +10,7 @@ export const schema = makeSchema({
     plugins: [nexusSchemaPrisma({ experimentalCRUD: true })],
     outputs: {
         schema: path.join(process.cwd(), "schema.graphql"),
-        typegen: path.join(process.cwd(), "graphql", "generated", "nexus.ts"),
+        typegen: path.join(process.cwd(), "nexus.ts"),
     },
     //   typegenAutoConfig: {
     //     sources: [

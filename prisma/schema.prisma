@@ -12,6 +12,7 @@ generator client {
 
 model Song {
   id       String  @id @default(cuid())
+  rating   Int
   cover    String
   length   Int
   artist   Artist  @relation(fields: [artistId], references: [id])

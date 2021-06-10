@@ -1,20 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 
-export default function FreshTracks() {
-    const [songs, setSongs] = useState([]);
+import { SongType } from "@/types/index";
 
-    useEffect(() => {
-        const doThis = async () => {
-            const res = await fetch(`/api/songs`);
-            const data = await res.json();
-
-            setSongs(data.songs);
-            console.log(data.songs);
-        };
-
-        doThis();
-    }, []);
+export default function FreshTracks({ songs, ratingSongs }) {
     return (
         <div className="uk-section uk-section-default">
             <div className="uk-container uk-container-large">
@@ -31,7 +20,7 @@ export default function FreshTracks() {
                             className="uk-child-width-1-2 uk-child-width-1-4@s"
                             data-uk-grid
                         >
-                            {songs.map((song, index) => (
+                            {songs.map((song: SongType, index: number) => (
                                 <div key={index}>
                                     <div className="uk-card">
                                         <div
@@ -1011,21 +1000,23 @@ export default function FreshTracks() {
                             <h2 className="uk-margin-bottom mt-10 uk-heading-small">
                                 Top music
                             </h2>
-                            <a
-                                href="single.html"
-                                className="display-bl uk-animation-toggle"
-                                tabIndex={0}
-                            >
-                                <span
-                                    data-uk-icon="icon: play-circle; ratio:1"
-                                    className="
+                            {ratingSongs.map(
+                                (song: SongType, index: number) => (
+                                    <Link href={`/song/${song.id}`} key={index}>
+                                        <a
+                                            className="display-bl uk-animation-toggle"
+                                            tabIndex={0}
+                                        >
+                                            <span
+                                                data-uk-icon="icon: play-circle; ratio:1"
+                                                className="
                                         uk-icon
                                         icon-music
                                         uk-animation-slide-left-small
                                     "
-                                ></span>
-                                <h3
-                                    className="
+                                            ></span>
+                                            <h3
+                                                className="
                                         uk-card-title
                                         uk-text-500
                                         uk-margin-small-bottom
@@ -1033,218 +1024,13 @@ export default function FreshTracks() {
                                         display-inline
                                         uk-animation-slide-left-small
                                     "
-                                >
-                                    Take A Look Around · Limp Bizkit
-                                </h3>
-                            </a>
-                            <a
-                                href="single.html"
-                                className="display-bl uk-animation-toggle"
-                                tabIndex={0}
-                            >
-                                <span
-                                    data-uk-icon="icon: play-circle; ratio:1"
-                                    className="
-                                        uk-icon
-                                        icon-music
-                                        uk-animation-slide-left-small
-                                    "
-                                ></span>
-                                <h3
-                                    className="
-                                        uk-card-title
-                                        uk-text-500
-                                        uk-margin-small-bottom
-                                        uk-margin-small-top
-                                        display-inline
-                                        uk-animation-slide-left-small
-                                    "
-                                >
-                                    Devorame · Natti Natasha
-                                </h3>
-                            </a>
-                            <a
-                                href="single.html"
-                                className="display-bl uk-animation-toggle"
-                                tabIndex={0}
-                            >
-                                <span
-                                    data-uk-icon="icon: play-circle; ratio:1"
-                                    className="
-                                        uk-icon
-                                        icon-music
-                                        uk-animation-slide-left-small
-                                    "
-                                ></span>
-                                <h3
-                                    className="
-                                        uk-card-title
-                                        uk-text-500
-                                        uk-margin-small-bottom
-                                        uk-margin-small-top
-                                        display-inline
-                                        uk-animation-slide-left-small
-                                    "
-                                >
-                                    Natti Natasha: IlumiNATTI
-                                </h3>
-                            </a>
-                            <a
-                                href="single.html"
-                                className="display-bl uk-animation-toggle"
-                                tabIndex={0}
-                            >
-                                <span
-                                    data-uk-icon="icon: play-circle; ratio:1"
-                                    className="
-                                        uk-icon
-                                        icon-music
-                                        uk-animation-slide-left-small
-                                    "
-                                ></span>
-                                <h3
-                                    className="
-                                        uk-card-title
-                                        uk-text-500
-                                        uk-margin-small-bottom
-                                        uk-margin-small-top
-                                        display-inline
-                                        uk-animation-slide-left-small
-                                    "
-                                >
-                                    Abraham Mateo: A Cámo
-                                </h3>
-                            </a>
-                            <a
-                                href="single.html"
-                                className="display-bl uk-animation-toggle"
-                                tabIndex={0}
-                            >
-                                <span
-                                    data-uk-icon="icon: play-circle; ratio:1"
-                                    className="
-                                        uk-icon
-                                        icon-music
-                                        uk-animation-slide-left-small
-                                    "
-                                ></span>
-                                <h3
-                                    className="
-                                        uk-card-title
-                                        uk-text-500
-                                        uk-margin-small-bottom
-                                        uk-margin-small-top
-                                        display-inline
-                                        uk-animation-slide-left-small
-                                    "
-                                >
-                                    Feel Good Alternative
-                                </h3>
-                            </a>
-                            <a
-                                href="single.html"
-                                className="display-bl uk-animation-toggle"
-                                tabIndex={0}
-                            >
-                                <span
-                                    data-uk-icon="icon: play-circle; ratio:1"
-                                    className="
-                                        uk-icon
-                                        icon-music
-                                        uk-animation-slide-left-small
-                                    "
-                                ></span>
-                                <h3
-                                    className="
-                                        uk-card-title
-                                        uk-text-500
-                                        uk-margin-small-bottom
-                                        uk-margin-small-top
-                                        display-inline
-                                        uk-animation-slide-left-small
-                                    "
-                                >
-                                    It&apos;s a Slippery Slope
-                                </h3>
-                            </a>
-                            <a
-                                href="single.html"
-                                className="display-bl uk-animation-toggle"
-                                tabIndex={0}
-                            >
-                                <span
-                                    data-uk-icon="icon: play-circle; ratio:1"
-                                    className="
-                                        uk-icon
-                                        icon-music
-                                        uk-animation-slide-left-small
-                                    "
-                                ></span>
-                                <h3
-                                    className="
-                                        uk-card-title
-                                        uk-text-500
-                                        uk-margin-small-bottom
-                                        uk-margin-small-top
-                                        display-inline
-                                        uk-animation-slide-left-small
-                                    "
-                                >
-                                    It&apos;s a Slippery
-                                </h3>
-                            </a>
-                            <a
-                                href="single.html"
-                                className="display-bl uk-animation-toggle"
-                                tabIndex={0}
-                            >
-                                <span
-                                    data-uk-icon="icon: play-circle; ratio:1"
-                                    className="
-                                        uk-icon
-                                        icon-music
-                                        uk-animation-slide-left-small
-                                    "
-                                ></span>
-                                <h3
-                                    className="
-                                        uk-card-title
-                                        uk-text-500
-                                        uk-margin-small-bottom
-                                        uk-margin-small-top
-                                        display-inline
-                                        uk-animation-slide-left-small
-                                    "
-                                >
-                                    August Heat
-                                </h3>
-                            </a>
-                            <a
-                                href="single.html"
-                                className="display-bl uk-animation-toggle"
-                                tabIndex={0}
-                            >
-                                <span
-                                    data-uk-icon="icon: play-circle; ratio:1"
-                                    className="
-                                        uk-icon
-                                        icon-music
-                                        uk-animation-slide-left-small
-                                    "
-                                ></span>
-                                <h3
-                                    className="
-                                        uk-card-title
-                                        uk-text-500
-                                        uk-margin-small-bottom
-                                        uk-margin-small-top
-                                        display-inline
-                                        uk-animation-slide-left-small
-                                    "
-                                >
-                                    Into Heat
-                                </h3>
-                            </a>
+                                            >
+                                                {song.name} · {song.artist.name}
+                                            </h3>
+                                        </a>
+                                    </Link>
+                                )
+                            )}
                         </div>
                     </div>
                 </div>

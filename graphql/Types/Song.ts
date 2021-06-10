@@ -8,6 +8,7 @@ export const Song = objectType({
         t.model.artist();
         t.model.cover();
         t.model.length();
+        t.model.rating();
         t.model.name();
         t.model.genres();
     },
