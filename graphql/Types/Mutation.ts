@@ -1,4 +1,3 @@
-// @ts-ignore
 import { mutationType } from "nexus";
 import { AuthenticationError, ApolloError } from "apollo-server-micro";
 

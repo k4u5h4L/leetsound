@@ -10,27 +10,47 @@ export const schema = makeSchema({
     plugins: [
         nexusSchemaPrisma({
             outputs: {
-                typegen: process.cwd() + "typegen-nexus-plugin-prisma.d.ts",
+                typegen: path.join(
+                    process.cwd(),
+                    "graphql",
+                    "generated",
+                    "index.ts"
+                ),
             },
             experimentalCRUD: true,
         }),
     ],
     outputs: {
         schema: path.join(process.cwd(), "schema.graphql"),
-        typegen: path.join(process.cwd(), "nexus.ts"),
+        typegen: path.join(process.cwd(), "graphql", "generated", "nexus.ts"),
     },
-    typegenAutoConfig: {
-        sources: [
-            {
-                alias: "faces",
-                source: path.join(process.cwd(), "src", "interfaces.ts"),
-                typeMatch: (type) => new RegExp(`(${type}Interface)`),
-            },
-        ],
-        backingTypeMap: {
-            Date: "Date",
-            URL: "URL",
-        },
-        debug: process.env.NODE_ENV === "development",
-    },
+
+    // typegenAutoConfig: {
+    //     sources: [
+    //         {
+    //             source: "@prisma/client",
+    //             alias: "client",
+    //         },
+    //         {
+    //             source: require.resolve("@/prisma/client"),
+    //             alias: "Context",
+    //         },
+    //     ],
+    //     contextType: "Context.Context",
+    // },
+
+    // typegenAutoConfig: {
+    //     sources: [
+    //         {
+    //             alias: "faces",
+    //             source: path.join(process.cwd(), "src", "interfaces.ts"),
+    //             typeMatch: (type) => new RegExp(`(${type}Interface)`),
+    //         },
+    //     ],
+    //     backingTypeMap: {
+    //         Date: "Date",
+    //         URL: "URL",
+    //     },
+    //     debug: process.env.NODE_ENV === "development",
+    // },
 });

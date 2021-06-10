@@ -1,4 +1,3 @@
-// @ts-ignore
 import { queryType, idArg } from "nexus";
 import { AuthenticationError } from "apollo-server-micro";
 
