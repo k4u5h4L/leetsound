@@ -7,6 +7,8 @@ export const Song = objectType({
         t.model.album();
         t.model.artist();
         t.model.cover();
+        t.model.date();
+        t.model.desc();
         t.model.length();
         t.model.rating();
         t.model.name();

@@ -17,14 +17,14 @@ import BottomLinks from "@/components/BottomLinks/BottomLinks";
 import prisma from "@/prisma/client";
 
 export const getStaticProps: GetStaticProps = async (context) => {
-    const songs = await prisma.song.findMany({
+    const res = await prisma.song.findMany({
         include: {
             artist: true,
             genres: true,
         },
     });
 
-    const ratingSongs = await prisma.song.findMany({
+    const res1 = await prisma.song.findMany({
         include: {
             artist: true,
             genres: true,
@@ -35,14 +35,22 @@ export const getStaticProps: GetStaticProps = async (context) => {
         take: 9,
     });
 
-    // console.log(ratingSongs);
+    const songs = res.map((song) => ({
+        ...song,
+        date: song.date.toDateString(),
+    }));
+
+    const ratingSongs = res1.map((song) => ({
+        ...song,
+        date: song.date.toDateString(),
+    }));
 
     return {
         props: {
             songs,
             ratingSongs,
         }, // will be passed to the page component as props
-        revalidate: 5,
+        revalidate: 1,
     };
 };
 

@@ -46,7 +46,18 @@ export default function FreshTracks({ songs, ratingSongs }) {
                                                 uk-position-top-right
                                             "
                                             >
-                                                Length: {song.length}
+                                                Length:{" "}
+                                                {`${
+                                                    (song.length / 60)
+                                                        .toString()
+                                                        .split(".")[0]
+                                                }:${
+                                                    (
+                                                        song.length % 60
+                                                    ).toString().length == 1
+                                                        ? `${song.length % 60}0`
+                                                        : song.length % 60
+                                                }`}
                                             </div>
                                         </div>
                                         <div>

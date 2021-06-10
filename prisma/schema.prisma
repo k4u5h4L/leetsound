@@ -11,13 +11,15 @@ generator client {
 }
 
 model Song {
-  id       String  @id @default(cuid())
+  id       String   @id @default(cuid())
   rating   Int
+  date     DateTime @default(now())
+  desc     String   @default("")
   cover    String
   length   Int
-  artist   Artist  @relation(fields: [artistId], references: [id])
+  artist   Artist   @relation(fields: [artistId], references: [id])
   name     String
-  album    Album   @relation(fields: [albumId], references: [id])
+  album    Album    @relation(fields: [albumId], references: [id])
   genres   Genre[]
   albumId  String
   artistId String

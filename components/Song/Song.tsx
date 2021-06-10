@@ -1,28 +1,30 @@
 import React from "react";
+import Image from "next/image";
 
-export default function Song() {
+export default function Song({ song }) {
     return (
         <div className="uk-container uk-container-large">
             <div data-uk-grid>
                 <div className="uk-width-1-3@s">
                     <div>
-                        <img
+                        <Image
                             className="uk-border-rounded-large width-100"
-                            src="/images/3.jpg"
-                            alt="Image alt"
+                            src={song.cover}
+                            alt={`${song.name}-alt`}
+                            width={435}
+                            height={435}
                         />
                     </div>
                 </div>
                 <div className="uk-width-expand@s uk-flex uk-flex-middle">
                     <div>
-                        <h1>They Need Us</h1>
+                        <h1>{song.name}</h1>
                         <p>
-                            Supermarket Edgy and driving, with indie rock
-                            elements featuring confident electric gutiar and
-                            male aahs to createa masculine and empowering mood
-                            PRO free: This track is not registered with
-                            performance rights organisations.
+                            {song.desc}
+                            {/* prettier-ignore */}
+                            <pre>                                                                                                                   </pre>
                         </p>
+                        {/* <br /> */}
                         <div
                             className="
                                 uk-margin-medium-top
@@ -33,7 +35,7 @@ export default function Song() {
                             data-uk-grid
                         >
                             <div>
-                                <span data-uk-icon="icon: cog; ratio: 1.4"></span>
+                                <span data-uk-icon="icon: album; ratio: 1.4"></span>
                                 <h5
                                     className="
                                         uk-text-500
@@ -41,14 +43,14 @@ export default function Song() {
                                         uk-margin-remove-bottom
                                     "
                                 >
-                                    Track versions
+                                    Album
                                 </h5>
                                 <span className="uk-text-small">
-                                    20 | 30 | 50
+                                    {song.album.name}
                                 </span>
                             </div>
                             <div>
-                                <span data-uk-icon="icon: more; ratio: 1.4"></span>
+                                <span data-uk-icon="icon: star; ratio: 1.4"></span>
                                 <h5
                                     className="
                                         uk-text-500
@@ -56,14 +58,14 @@ export default function Song() {
                                         uk-margin-remove-bottom
                                     "
                                 >
-                                    Loops
+                                    Rating
                                 </h5>
                                 <span className="uk-text-small">
-                                    20 | 30 | 50
+                                    {song.rating}
                                 </span>
                             </div>
                             <div>
-                                <span data-uk-icon="icon: settings; ratio: 1.4"></span>
+                                <span data-uk-icon="icon: user; ratio: 1.4"></span>
                                 <h5
                                     className="
                                         uk-text-500
@@ -71,10 +73,10 @@ export default function Song() {
                                         uk-margin-remove-bottom
                                     "
                                 >
-                                    Stems
+                                    Artist
                                 </h5>
                                 <span className="uk-text-small">
-                                    20 | 30 | 50
+                                    {song.artist.name}
                                 </span>
                             </div>
                         </div>
@@ -87,10 +89,20 @@ export default function Song() {
                                         uk-margin-remove-bottom
                                     "
                                 >
-                                    Created by <a href="#">Meteors</a>
+                                    Created on <b>{song.date}</b>
                                 </p>
                                 <span className="uk-text-muted">
-                                    Length 2:23{" "}
+                                    Length{" "}
+                                    {`${
+                                        (song.length / 60)
+                                            .toString()
+                                            .split(".")[0]
+                                    }:${
+                                        (song.length % 60).toString().length ==
+                                        1
+                                            ? `${song.length % 60}0`
+                                            : song.length % 60
+                                    }`}
                                 </span>
                             </div>
 
@@ -103,10 +115,10 @@ export default function Song() {
                                 "
                             >
                                 <a
-                                    href="#"
                                     className="uk-icon-link"
-                                    data-uk-icon="icon: download; ratio: 1.2"
-                                    data-uk-tooltip="title: Download Track"
+                                    data-uk-icon="icon: play; ratio: 1.2"
+                                    data-uk-tooltip="title: Add to queue"
+                                    style={{ cursor: "pointer" }}
                                 ></a>
                             </div>
                             {/* <audio controls className="width-100">

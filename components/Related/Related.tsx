@@ -19,7 +19,7 @@ export default function Related() {
                             <div className="uk-card-media-top uk-inline uk-light">
                                 <img
                                     className="uk-border-rounded-medium"
-                                    src="images/1.jpg"
+                                    src="/images/1.jpg"
                                     alt="Birth of a Star"
                                 />
                                 <div
@@ -81,7 +81,7 @@ export default function Related() {
                             <div className="uk-card-media-top uk-inline uk-light">
                                 <img
                                     className="uk-border-rounded-medium"
-                                    src="images/2.jpg"
+                                    src="/images/2.jpg"
                                     alt="Birth of a Star"
                                 />
                                 <div
@@ -143,7 +143,7 @@ export default function Related() {
                             <div className="uk-card-media-top uk-inline uk-light">
                                 <img
                                     className="uk-border-rounded-medium"
-                                    src="images/3.jpg"
+                                    src="/images/3.jpg"
                                     alt="Birth of a Star"
                                 />
                                 <div
@@ -205,7 +205,7 @@ export default function Related() {
                             <div className="uk-card-media-top uk-inline uk-light">
                                 <img
                                     className="uk-border-rounded-medium"
-                                    src="images/4.jpg"
+                                    src="/images/4.jpg"
                                     alt="Birth of a Star"
                                 />
                                 <div

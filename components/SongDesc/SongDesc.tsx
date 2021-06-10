@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function SongDesc() {
+export default function SongDesc({ song }) {
     return (
         <div className="uk-section uk-section-default">
             <div className="uk-container uk-container-large">
