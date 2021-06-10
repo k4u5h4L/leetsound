@@ -1,4 +1,5 @@
 # public/* linguist-vendored=false
 # *.html linguist-detectable=false
 *.js linguist-detectable=false
+*.css linguist-detectable=false
 public/* linguist-detectable=false
