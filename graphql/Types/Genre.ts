@@ -1,3 +1,4 @@
+// @ts-ignore
 import { objectType } from "nexus";
 
 export const Genre = objectType({
