@@ -2,7 +2,7 @@ import { objectType } from "nexus";
 
 export const Song = objectType({
     name: "Song",
-    definition(t: any) {
+    definition(t) {
         t.model.id();
         t.model.album();
         t.model.artist();

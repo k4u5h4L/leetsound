@@ -2,7 +2,7 @@ import { mutationType } from "nexus";
 import { AuthenticationError, ApolloError } from "apollo-server-micro";
 
 export const Mutation = mutationType({
-    definition(t: any) {
+    definition(t) {
         t.crud.createOneSong();
         t.crud.createOneAlbum();
         t.crud.createOneArtist();

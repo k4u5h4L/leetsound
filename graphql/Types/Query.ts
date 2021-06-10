@@ -4,7 +4,7 @@ import { AuthenticationError } from "apollo-server-micro";
 import { GraphQLContext } from "@/types/index";
 
 export const Query = queryType({
-    definition(t: any) {
+    definition(t) {
         t.crud.song({
             resolve: (_root, args, ctx: GraphQLContext) => {
                 return ctx.prisma.song.findFirst({
