@@ -1,4 +1,6 @@
 import React from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
     return (
@@ -13,9 +15,16 @@ export default function Footer() {
             >
                 <div className="uk-child-width-1-2@s" data-uk-grid>
                     <div>
-                        <a href="#" className="uk-logo">
-                            <img src="images/logo%402x.png" alt="logo" />
-                        </a>
+                        <Link href="/">
+                            <a className="uk-logo">
+                                <Image
+                                    src="/images/logo.png"
+                                    alt="logo"
+                                    width={160}
+                                    height={60}
+                                />
+                            </a>
+                        </Link>
                     </div>
                     <div className="uk-flex uk-flex-middle uk-flex-right@s">
                         <div

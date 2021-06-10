@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
+
+import { useSession } from "next-auth/client";
 
 export default function Navbar() {
+    const router = useRouter();
+
+    const [session] = useSession();
+
+    const searchRef = useRef("");
+
+    const searchChangeHandler = (e: any): void => {
+        searchRef.current = e.target.value;
+    };
+
+    const searchSubmitHandler = (): void => {
+        router.push(`/search?q=${encodeURI(searchRef.current)}`);
+    };
+
     return (
         <nav className="uk-navbar-container uk-letter-spacing-small">
             <div className="uk-container uk-container-large">
@@ -59,7 +76,10 @@ export default function Navbar() {
                                 uk-margin-small-right
                             "
                         >
-                            <form className="uk-search uk-search-default uk-width-1-1">
+                            <form
+                                className="uk-search uk-search-default uk-width-1-1"
+                                onSubmit={() => searchSubmitHandler()}
+                            >
                                 <span
                                     data-uk-search-icon=""
                                     className="uk-icon uk-search-icon"
@@ -73,15 +93,26 @@ export default function Navbar() {
                                     "
                                     type="search"
                                     placeholder="Search for music..."
+                                    onChange={(e) => searchChangeHandler(e)}
                                 />
                             </form>
                         </div>
                         <ul className="uk-navbar-nav uk-visible@m">
-                            <li>
-                                <Link href="/login">
-                                    <a>Login</a>
-                                </Link>
-                            </li>
+                            {!session ? (
+                                <li>
+                                    <Link href="/login">
+                                        <a>Login</a>
+                                    </Link>
+                                </li>
+                            ) : (
+                                <li>
+                                    Hello,{" "}
+                                    <b>
+                                        {session.user.name ||
+                                            session.user.email}
+                                    </b>
+                                </li>
+                            )}
                         </ul>
                         <a
                             className="uk-navbar-toggle uk-hidden@m"
