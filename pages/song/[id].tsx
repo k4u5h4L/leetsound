@@ -63,7 +63,7 @@ export default function SingleSong({ song }) {
             <Footer />
             <BottomLinks />
 
-            <Player />
+            {/* <Player /> */}
         </>
     );
 }

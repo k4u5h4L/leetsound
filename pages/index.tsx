@@ -1,11 +1,6 @@
 import React from "react";
 import { GetStaticProps } from "next";
 import { useSession } from "next-auth/client";
-import dynamic from "next/dynamic";
-
-const Player = dynamic(() => import("@/components/Player/Player"), {
-    ssr: false,
-});
 
 import Navbar from "@/components/Navbar/Navbar";
 import Banner from "@/components/Home/Banner/Banner";
@@ -64,8 +59,6 @@ export default function Home({ songs, ratingSongs }) {
             {!session ? <Ads /> : null}
             <Footer />
             <BottomLinks />
-
-            <Player />
         </>
     );
 }

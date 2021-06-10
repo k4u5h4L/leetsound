@@ -95,7 +95,7 @@ export default function Search({ songs }) {
             <Footer />
             <BottomLinks />
 
-            <Player />
+            {/* <Player /> */}
         </>
     );
 }

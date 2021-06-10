@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 
+import { QueueContext } from "@/utils/queueContext";
+
 export default function Song({ song }) {
+    const { queue, setQueue } = useContext(QueueContext);
+
+    const pushToQueue = () => {
+        setQueue((prevVal) => [
+            ...prevVal,
+            {
+                musicSrc: `/api/song/${song.id}`,
+                name: song.name,
+                singer: song.artist.name,
+                cover: song.cover,
+            },
+        ]);
+    };
+
     return (
         <div className="uk-container uk-container-large">
             <div data-uk-grid>
@@ -19,11 +35,7 @@ export default function Song({ song }) {
                 <div className="uk-width-expand@s uk-flex uk-flex-middle">
                     <div>
                         <h1>{song.name}</h1>
-                        <p>
-                            {song.desc}
-                            {/* prettier-ignore */}
-                            <pre>                                                                                                                   </pre>
-                        </p>
+                        <p>{song.desc}</p>
                         {/* <br /> */}
                         <div
                             className="
@@ -119,6 +131,7 @@ export default function Song({ song }) {
                                     data-uk-icon="icon: play; ratio: 1.2"
                                     data-uk-tooltip="title: Add to queue"
                                     style={{ cursor: "pointer" }}
+                                    onClick={() => pushToQueue()}
                                 ></a>
                             </div>
                             {/* <audio controls className="width-100">
