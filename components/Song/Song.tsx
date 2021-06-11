@@ -16,6 +16,10 @@ export default function Song({ song }) {
                 cover: song.cover,
             },
         ]);
+
+        // if (typeof window !== "undefined") {
+        //     localStorage.setItem("leetsound-queue", JSON.stringify(queue));
+        // }
     };
 
     return (

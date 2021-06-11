@@ -1,7 +1,8 @@
-import { queryType, idArg } from "nexus";
+import { queryType, stringArg } from "nexus";
 import { AuthenticationError } from "apollo-server-micro";
 
 import { GraphQLContext } from "@/types/index";
+import { Song } from "./Song";
 
 export const Query = queryType({
     definition(t) {

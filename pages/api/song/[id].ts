@@ -6,7 +6,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     console.log("buffer called");
 
-    const path = `${process.cwd()}/temp/magnus-conquer.flac`;
+    const path = `${process.cwd()}/music/Alisky-Grow.flac`;
     const stat = fs.statSync(path);
     const fileSize = stat.size;
     const range = req.headers.range;

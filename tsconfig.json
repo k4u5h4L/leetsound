@@ -22,6 +22,7 @@
             "@/prisma/*": ["prisma/*"],
             "@/databases/*": ["databases/*"],
             "@/helpers/*": ["helpers/*"],
+            "@/styles/*": ["styles/*"],
             "@/graphql/*": ["graphql/*"]
         }
     },

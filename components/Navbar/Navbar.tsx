@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-import { useSession } from "next-auth/client";
+import { options, useSession } from "next-auth/client";
 
 export default function Navbar() {
     const router = useRouter();
@@ -17,7 +17,18 @@ export default function Navbar() {
     };
 
     const searchSubmitHandler = (): void => {
-        router.push(`/search?q=${encodeURI(searchRef.current)}`);
+        // router.push(`/search?q=${encodeURI(searchRef.current)}`, {
+        //     shallow: true
+        // });
+        router.push(
+            {
+                pathname: "/search",
+                query: { q: searchRef.current },
+            },
+            // `/search?q=${encodeURI(searchRef.current)}`,
+            undefined,
+            { shallow: true }
+        );
     };
 
     return (

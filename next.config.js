@@ -1,41 +1,3 @@
-const withPWA = require("next-pwa");
-const runtimeCaching = require("next-pwa/cache");
-
-// module.exports = withPWA({
-//     pwa: {
-//         dest: "public",
-//         runtimeCaching,
-//     },
-//     images: {
-//         domains: [
-//             "localhost:3000",
-//             "localhost",
-//             "quikpantry.vercel.app",
-//             "vercel.com",
-//             // below are arbitrary links for random images
-//             "templates.envytheme.com",
-//             "i1.wp.com",
-//             "images-na.ssl-images-amazon.com",
-//             "cdn-prod.medicalnewstoday.com",
-//             "images2.minutemediacdn.com",
-//             "cdn.apartmenttherapy.info",
-//             "res.cloudinary.com",
-//             "thespruceeats.com",
-//             "www.thespruceeats.com",
-//             "images.ctfassets.net",
-//         ],
-//     },
-//     async redirects() {
-//         return [
-//             {
-//                 source: "/shop",
-//                 destination: "/shop/1",
-//                 permanent: true,
-//             },
-//         ];
-//     },
-// });
-
 module.exports = {
     images: {
         domains: [
@@ -48,6 +10,57 @@ module.exports = {
             "img.icons8.com",
         ],
     },
+    // webpack: (config, options) => {
+    //     config.module.rules.push({
+    //         test: /\.css$/,
+    //         use: [
+    //             {
+    //                 loader: require.resolve("style-loader"),
+    //             },
+    //             {
+    //                 loader: require.resolve("css-loader"),
+    //                 options: {
+    //                     modules: true,
+    //                     importLoaders: 1,
+    //                     localIdentName: "[sha1:hash:hex:4]",
+    //                 },
+    //                 // options: {
+    //                 //     importLoaders: 1,
+    //                 //     modules: true,
+    //                 //     modules: {
+    //                 //         localIdentName: "[name]__[local]__[hash:base64:5]",
+    //                 //     },
+    //                 // },
+    //             },
+    //         ],
+    //     });
+
+    //     return config;
+    // },
+
+    // webpack(config, { buildId, dev, isServer, defaultLoaders, webpack }) {
+    //     config.module.rules[1].oneOf.forEach((moduleLoader, i) => {
+    //         Array.isArray(moduleLoader.use) &&
+    //             moduleLoader.use.forEach((l) => {
+    //                 if (
+    //                     l.loader.includes("\\css-loader") &&
+    //                     !l.loader.includes("postcss-loader")
+    //                 ) {
+    //                     const { getLocalIdent, ...others } = l.options.modules;
+
+    //                     l.options = {
+    //                         ...l.options,
+    //                         modules: {
+    //                             ...others,
+    //                             localIdentName: "[hash:base64:6]",
+    //                         },
+    //                     };
+    //                 }
+    //             });
+    //     });
+    //     return config;
+    // },
+
     // async redirects() {
     //     return [
     //         {

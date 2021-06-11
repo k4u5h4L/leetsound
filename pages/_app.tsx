@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 
-import Router from "next/router";
-
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import { Provider } from "next-auth/client";
@@ -10,15 +8,13 @@ import type { AppProps /*, AppContext */ } from "next/app";
 import { ApolloProvider } from "@apollo/client";
 import { useApollo } from "@/graphql/apolloClient";
 
-const Player = dynamic(() => import("@/components/Player/Player"), {
+const PlayerWithNoSSR = dynamic(() => import("@/components/Player/Player"), {
     ssr: false,
 });
 
-import { paths } from "@/constants/pathsToInclude";
-
 import NextNprogress from "nextjs-progressbar";
 
-// import "react-h5-audio-player/lib/styles.css";
+import "@/styles/main.css";
 import "react-jinke-music-player/assets/index.css";
 
 import { QueueContext } from "@/utils/queueContext";
@@ -26,16 +22,12 @@ import { QueueContext } from "@/utils/queueContext";
 function MyApp({ Component, pageProps }: AppProps) {
     const client = useApollo();
 
-    if (typeof window !== "undefined") {
-        console.log(Router.route);
-    }
-
     const [queue, setQueue] = useState<any[]>([
         {
-            musicSrc: "/api/song/1",
-            name: "Conquer",
-            singer: "Magnus",
-            cover: "https://is4-ssl.mzstatic.com/image/thumb/Music123/v4/4c/c4/9c/4cc49cca-8197-16a9-1268-8273d35304c4/20UMGIM07401.rgb.jpg/400x400bb.jpeg",
+            musicSrc: "/api/song/2",
+            name: "Grow",
+            singer: "Alisky",
+            cover: "https://images.genius.com/be4c20bc790ac1d96df8bfe11c9525bf.440x440x1.jpg",
         },
     ]);
 
@@ -84,7 +76,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             <ApolloProvider client={client}>
                 <QueueContext.Provider value={{ queue, setQueue }}>
                     <Component {...pageProps} />
-                    <Player />
+                    <PlayerWithNoSSR />
                 </QueueContext.Provider>
             </ApolloProvider>
         </Provider>

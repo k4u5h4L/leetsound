@@ -1,1 +1,1 @@
-export const paths = ["/search", "/song", "/", "/categories", "/profile"];
+export const paths = /\/((song)|(categories)|(search))/gim;
